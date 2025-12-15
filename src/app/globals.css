@@ -3,8 +3,6 @@
 }
 
 :root {
-  --font-borel: "Borel", cursive;
-
   --color-primary: #e5aeda;
   --color-secondary: #c7ddef;
   --color-bgLight: #fffed7;
@@ -20,9 +18,9 @@ body {
 }
 
 .heading {
-  font-family: var(--font-lecker);
+  font-family: var(--font-noodle);
   font-size: 48px;
-  line-height: 64px;
+  line-height: 56px;
   color: var(--color-darkPink);
   text-align: center;
 }

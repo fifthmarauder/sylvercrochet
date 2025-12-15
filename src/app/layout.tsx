@@ -1,19 +1,6 @@
 import "./globals.css";
-import { Borel } from "next/font/google";
-import { Leckerli_One } from "next/font/google";
+
 import localFont from "next/font/local";
-
-const borel = Borel({
-  subsets: ["latin"],
-  weight: ["400"],
-  variable: "--font-borel",
-});
-
-const lecker = Leckerli_One({
-  subsets: ["latin"],
-  weight: ["400"],
-  variable: "--font-lecker",
-});
 
 const sofia = localFont({
   src: [
@@ -31,6 +18,29 @@ const sofia = localFont({
   variable: "--font-sofia",
   display: "swap",
 });
+
+const noodle = localFont({
+  src: [
+    {
+      style: "normal",
+      path: "../../public/Fonts/VAGRundschriftD.ttf",
+    },
+  ],
+  variable: "--font-noodle",
+  display: "swap",
+});
+
+const knotNoodle = localFont({
+  src: [
+    {
+      style: "normal",
+      path: "../../public/Fonts/Knotnoodle-Regular.ttf",
+    },
+  ],
+  variable: "--font-knotnoodle",
+  display: "swap",
+});
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -39,7 +49,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${borel.variable} ${sofia.variable} ${lecker.variable}`}
+      className={` ${sofia.variable}  ${noodle.variable} ${knotNoodle.variable}`}
     >
       <body>{children}</body>
     </html>

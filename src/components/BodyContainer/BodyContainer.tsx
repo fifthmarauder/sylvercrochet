@@ -13,7 +13,17 @@ const BodyContainer = () => {
               <Sparkles /> Handmade with Love
             </div>
             <div className="heading">
-              DISCOVER ADORABLE HANDMADE CROCHET TREASURES
+              DISC
+              <span style={{ fontFamily: "var(--font-knotnoodle)" }}>O</span>VER
+              ADOR
+              <span style={{ fontFamily: "var(--font-knotnoodle)" }}>A</span>BLE
+              HAND
+              <span style={{ fontFamily: "var(--font-knotnoodle)" }}>M</span>ADE
+              CR<span style={{ fontFamily: "var(--font-knotnoodle)" }}>O</span>C
+              <span style={{ fontFamily: "var(--font-knotnoodle)" }}>H</span>ET
+              TREAS
+              <span style={{ fontFamily: "var(--font-knotnoodle)" }}>U</span>
+              RES
             </div>
             <div className={styles.para}>
               Every stitch tells a story! Expplore our collection of lovingly
@@ -31,7 +41,9 @@ const BodyContainer = () => {
           </div>
         </div>
       </div>
-      <Wave color="var(--color-bgLight)" />
+      <div style={{ backgroundColor: "var(--color-secondary" }}>
+        <Wave color="var(--color-bgLight)" />
+      </div>
     </>
   );
 };
