@@ -4,6 +4,21 @@ import Button from "../common/Button/Button";
 import Wave from "../common/Wave";
 
 const BodyContainer = () => {
+  const cardContent = [
+    {
+      label: "MADE WITH LOVE",
+      description:
+        "Each item is carefully handcrafted with attention to detail.",
+    },
+    {
+      label: "PREMIUM QUALITY",
+      description: "We use only the finest, hypoallergic yarns and materials.",
+    },
+    {
+      label: "FAST SHIPPING",
+      description: "Carefully packaged and shipped with love to your door.",
+    },
+  ];
   return (
     <>
       <div className={styles.main}>
@@ -39,9 +54,19 @@ const BodyContainer = () => {
               />
             </div>
           </div>
+          <div className={styles.cardRow}>
+            {cardContent.map((data, index) => {
+              return (
+                <div className={styles.cardStyle} key={index}>
+                  <div className={styles.cardHeading}>{data.label}</div>
+                  <div className={styles.cardPara}>{data.description}</div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
-      <div style={{ backgroundColor: "var(--color-secondary" }}>
+      <div style={{ backgroundColor: "var(--color-lightPink" }}>
         <Wave color="var(--color-bgLight)" />
       </div>
     </>
