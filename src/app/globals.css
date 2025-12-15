@@ -14,3 +14,15 @@
   --color-lightPink: #f3d1ee;
   --color-darkPink: #e83c91;
 }
+
+body {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.heading {
+  font-family: var(--font-lecker);
+  font-size: 48px;
+  line-height: 64px;
+  color: var(--color-darkPink);
+  text-align: center;
+}
