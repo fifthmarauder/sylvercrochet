@@ -1,3 +1,7 @@
+.wrapper {
+  background-color: var(--color-bgLight);
+}
+
 .main {
   background-color: var(--color-lilac);
   display: flex;
@@ -19,7 +23,7 @@
   gap: 4px;
   font-family: var(--font-sofia);
   font-weight: 700;
-  color: white;
+  color: var(--color-bgLight);
 
   border-radius: 16px;
   font-size: 20px;
