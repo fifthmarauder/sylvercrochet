@@ -1,0 +1,49 @@
+.main {
+  background-color: var(--color-surfaceBlack);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 4px 64px 4px;
+}
+
+.container {
+  display: flex;
+  width: 1280px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.leftContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.contact {
+  color: var(--color-bgLight);
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.copyright {
+  color: var(--color-bgLight);
+  font-size: 12px;
+  font-weight: 300;
+  font-family: "Courier New", Courier, monospace;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 12px;
+}
+
+.rightContainer {
+  display: flex;
+  gap: 48px;
+}
+
+.contactContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
