@@ -1,6 +1,7 @@
 import styles from "./footer.module.css";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import PinterestIcon from "@mui/icons-material/Pinterest";
+import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 
 const Footer = () => {
   return (
@@ -20,6 +21,7 @@ const Footer = () => {
           >
             <InstagramIcon sx={{ fontSize: "40px" }} />{" "}
             <PinterestIcon sx={{ fontSize: "40px" }} />
+            <WhatsAppIcon sx={{ fontSize: "40px" }} />
           </div>
           <div className={styles.copyright}>
             <div>©2024 SylverCrochet</div>
