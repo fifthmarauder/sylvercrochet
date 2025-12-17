@@ -2,6 +2,7 @@ import { Heart, ShoppingCart, Sparkles } from "lucide-react";
 import Button from "../common/Button/Button";
 import styles from "./featuredproducts.module.css";
 import Wave from "../common/Wave";
+import ProductsCard from "../common/ProductsCard/ProductsCard";
 
 const FeaturedProducts = () => {
   return (
@@ -22,28 +23,8 @@ const FeaturedProducts = () => {
           <div className={styles.productContainer}>
             {[1, 2, 3].map((data, index) => {
               return (
-                <div className={styles.productCard} key={index}>
-                  <img
-                    src={"/Images/Huntrix.jpg"}
-                    alt="Product"
-                    className={styles.productImage}
-                  />
-                  <div className={styles.productInfo}>
-                    <div className={styles.productType}>Plushies</div>
-                  </div>
-                  <div className={styles.productName}>HUNTRIX FULL SET</div>
-                  <div className={styles.productDescription}>
-                    Adorable handmade crochet bear, perfect for cuddling! Made
-                    with soft, hypoallergic yarn.
-                  </div>
-                  <div className={styles.priceContainer}>
-                    <div className={styles.productPrice}>Rs. 4500</div>
-                    <Button
-                      text="Add to Cart"
-                      Icon={ShoppingCart}
-                      containerStyles={{ fontSize: "18px" }}
-                    />
-                  </div>
+                <div key={index} className={styles.productCard}>
+                  <ProductsCard />
                 </div>
               );
             })}

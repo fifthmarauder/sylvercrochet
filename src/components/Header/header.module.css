@@ -1,7 +1,3 @@
-.wrapper {
-  background-color: var(--color-bgLight);
-}
-
 .main {
   background-color: var(--color-lilac);
   display: flex;

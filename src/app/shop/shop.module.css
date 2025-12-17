@@ -1,0 +1,75 @@
+.main {
+  background-color: var(--color-lightPink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 64px 4px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  max-width: 1280px;
+  align-items: center;
+  gap: 24px;
+}
+
+.para {
+  text-align: center;
+  font-size: 18px;
+  color: #566563;
+  max-width: 600px;
+}
+
+.searchBoxContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 3px solid #e5aeda88;
+  border-radius: 16px;
+  padding: 12px;
+  margin-top: 48px;
+}
+
+.input {
+  border: none;
+  background-color: transparent;
+  width: 300px;
+  outline: none;
+  color: #566563;
+}
+
+input::placeholder {
+  color: #909998;
+}
+
+.pillsContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pillsHeader {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  color: #566563;
+  font-size: 16px;
+}
+.pills {
+  display: flex;
+  border: 3px solid #e5aeda88;
+  border-radius: 32px;
+  padding: 10px 20px;
+  color: var(--color-surfaceBlack);
+  background-color: white;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.productContainer {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+}

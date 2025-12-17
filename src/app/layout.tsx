@@ -1,6 +1,8 @@
+import Header from "@/components/Header/Header";
 import "./globals.css";
 
 import localFont from "next/font/local";
+import Footer from "@/components/Footer/Footer";
 
 const sofia = localFont({
   src: [
@@ -51,7 +53,11 @@ export default function RootLayout({
       lang="en"
       className={` ${sofia.variable}  ${noodle.variable} ${knotNoodle.variable}`}
     >
-      <body>{children}</body>
+      <body>
+        <Header />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }

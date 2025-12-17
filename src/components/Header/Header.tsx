@@ -1,13 +1,26 @@
 "use client";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import ShoppingBag from "../Icons/ShoppingBag";
 import styles from "./header.module.css";
-import { Book, House, LineSquiggle, Store } from "lucide-react";
+import { House, LineSquiggle, Store } from "lucide-react";
+import { useEffect, useState } from "react";
 
 const Header = () => {
   const router = useRouter();
+  const pathName = usePathname();
+
+  useEffect(() => {
+    pathName.startsWith("/shop")
+      ? setBackgroundColor("var(--color-lightPink)")
+      : setBackgroundColor("var(--color-bgLight)");
+  }, [pathName]);
+
+  const [backgroundColor, setBackgroundColor] = useState(
+    "var(--color-bgLight)"
+  );
+
   return (
-    <div className={styles.wrapper}>
+    <div style={{ backgroundColor: backgroundColor }}>
       <div className={styles.main}>
         <img
           src={"/Images/LogoNoBackground.png"}
