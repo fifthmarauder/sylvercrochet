@@ -1,10 +1,13 @@
+"use client";
 import { Heart, ShoppingCart, Sparkles } from "lucide-react";
 import Button from "../common/Button/Button";
 import styles from "./featuredproducts.module.css";
 import Wave from "../common/Wave";
 import ProductsCard from "../common/ProductsCard/ProductsCard";
+import { useRouter } from "next/navigation";
 
 const FeaturedProducts = () => {
+  const router = useRouter();
   return (
     <>
       <div className={styles.main}>
@@ -32,6 +35,9 @@ const FeaturedProducts = () => {
           <Button
             text="View All Products"
             Icon={Sparkles}
+            onClick={() => {
+              router.push("/shop");
+            }}
             containerStyles={{
               flexDirection: "row-reverse",
               marginBottom: "64px",

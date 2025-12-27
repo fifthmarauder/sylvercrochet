@@ -44,7 +44,9 @@ const Header = () => {
             <LineSquiggle /> ABOUT US
           </div>
         </div>
-        <ShoppingBag />
+        <div style={{ width: "175px", justifyContent: "end", display: "flex" }}>
+          <ShoppingBag />
+        </div>
       </div>
     </div>
   );

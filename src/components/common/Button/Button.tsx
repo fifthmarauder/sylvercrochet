@@ -5,14 +5,20 @@ const Button = ({
   Icon,
   containerStyles,
   buttonStyles,
+  onClick,
 }: {
   text: string;
   Icon: any;
   containerStyles?: React.CSSProperties;
   buttonStyles?: React.CSSProperties;
+  onClick?: () => void;
 }) => {
   return (
-    <div style={containerStyles} className={styles.buttonContainer}>
+    <div
+      style={containerStyles}
+      className={styles.buttonContainer}
+      onClick={onClick}
+    >
       <Icon style={buttonStyles} />
       {text}
     </div>

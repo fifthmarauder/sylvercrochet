@@ -1,0 +1,21 @@
+.main {
+  background-color: var(--color-lightPink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 64px 4px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  max-width: 1280px;
+  align-items: center;
+  gap: 24px;
+}
+
+.headingContainer {
+  display: flex;
+  width: 1280px;
+  justify-content: space-between;
+}

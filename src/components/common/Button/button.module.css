@@ -8,4 +8,14 @@
   background-color: var(--color-darkPink);
   border-radius: 20px;
   box-shadow: 0px 6px 10px -6px rgba(0, 0, 0, 0.7);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.buttonContainer:hover {
+  transform: scale(1.05);
+}
+
+.buttonContainer:active {
+  transform: scale(0.98);
 }
