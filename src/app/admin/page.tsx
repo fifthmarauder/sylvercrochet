@@ -5,19 +5,22 @@ import { BoxIcon, DollarSign, Package, Plus } from "lucide-react";
 const Admin = () => {
   const cardDetails = [
     {
-      icon: { Package },
+      Icon: Package,
       title: "Total Products",
-      bgColor: "var(--color-bgLight)",
+      bgColor: "#fff1f2",
+      color: "var(--color-darkPink)",
     },
     {
-      icon: { DollarSign },
+      Icon: DollarSign,
       title: "Inventory Value",
-      bgColor: "var(--color-secondary)",
+      bgColor: "#ebf8ff",
+      color: "var(--color-blue)",
     },
     {
-      icon: { BoxIcon },
+      Icon: BoxIcon,
       title: "Total Stock",
-      bgColor: "var(--color-lilac)",
+      bgColor: "#faf5ff",
+      color: "#8d128dff",
     },
   ];
   return (
@@ -32,22 +35,28 @@ const Admin = () => {
           <Button text="Add New Product " Icon={Plus} />
         </div>
         <div className={styles.cardContainer}>
-          <div
-            className={styles.card}
-            style={{ backgroundColor: "var(--color-bgLight)" }}
-          >
-            <div className={styles.iconContainer}>
-              <Package color="white" size={32} />
-            </div>
-            <div className={styles.cardInfo}>
-              <div>Total Products</div>
-              <div style={{ color: "var(--color-darkPink)", fontSize: "24px" }}>
-                5
+          {cardDetails.map((data, index) => {
+            return (
+              <div
+                className={styles.card}
+                style={{ backgroundColor: `${data.bgColor}` }}
+                key={index}
+              >
+                <div
+                  className={styles.iconContainer}
+                  style={{ backgroundColor: `${data.color}` }}
+                >
+                  <data.Icon color="white" size={32} />
+                </div>
+                <div className={styles.cardInfo}>
+                  <div>{data.title}</div>
+                  <div style={{ color: `${data.color}`, fontSize: "24px" }}>
+                    5
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-          <div>Inventory Values</div>
-          <div>Total Stock</div>
+            );
+          })}
         </div>
       </div>
     </div>
