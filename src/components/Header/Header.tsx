@@ -10,7 +10,7 @@ const Header = () => {
   const pathName = usePathname();
 
   useEffect(() => {
-    pathName.startsWith("/shop")
+    pathName.startsWith("/shop") || pathName.startsWith("/admin")
       ? setBackgroundColor("var(--color-lightPink)")
       : setBackgroundColor("var(--color-bgLight)");
   }, [pathName]);
@@ -34,7 +34,12 @@ const Header = () => {
         />
 
         <div className={styles.navbarButtonsContainer}>
-          <div className={styles.navbarButtons}>
+          <div
+            className={styles.navbarButtons}
+            onClick={() => {
+              router.push("/");
+            }}
+          >
             <House /> HOME
           </div>
           <div
