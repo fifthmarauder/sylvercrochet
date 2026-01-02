@@ -41,6 +41,7 @@ const FeaturedProducts = () => {
             containerStyles={{
               flexDirection: "row-reverse",
               marginBottom: "64px",
+              backgroundColor: "var(--color-blue)",
             }}
           />
           <div className={styles.exploreShopContainer}>
@@ -57,7 +58,13 @@ const FeaturedProducts = () => {
               Whether you're looking for a unique gift or treating yourself, our
               handmade crochet items bring warmth and joy to any space
             </div>
-            <Button text="Explore Our Shop" Icon={Heart} />
+            <Button
+              text="Explore Our Shop"
+              Icon={Heart}
+              onClick={() => {
+                router.push("/shop");
+              }}
+            />
           </div>
         </div>
       </div>

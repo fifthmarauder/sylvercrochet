@@ -37,7 +37,12 @@ const Header = () => {
           <div className={styles.navbarButtons}>
             <House /> HOME
           </div>
-          <div className={styles.navbarButtons}>
+          <div
+            className={styles.navbarButtons}
+            onClick={() => {
+              router.push("/shop");
+            }}
+          >
             <Store /> SHOP
           </div>
           <div className={styles.navbarButtons}>

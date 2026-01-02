@@ -1,9 +1,13 @@
+"use client";
+
 import { Box, Sparkles, Star } from "lucide-react";
 import styles from "./bodyContainer.module.css";
 import Button from "../common/Button/Button";
 import Wave from "../common/Wave";
+import { useRouter } from "next/navigation";
 
 const BodyContainer = () => {
+  const router = useRouter();
   const cardContent = [
     {
       label: "MADE WITH LOVE",
@@ -46,11 +50,20 @@ const BodyContainer = () => {
               Each piece is made with care and premium materials.
             </div>
             <div className={styles.buttonContainer}>
-              <Button Icon={Box} text="Shop Now" />
+              <Button
+                Icon={Box}
+                text="Shop Now"
+                onClick={() => {
+                  router.push("/shop");
+                }}
+              />
               <Button
                 Icon={Star}
                 text="Admin Panel"
                 containerStyles={{ backgroundColor: "var(--color-blue)" }}
+                onClick={() => {
+                  router.push("/admin");
+                }}
               />
             </div>
           </div>
