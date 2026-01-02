@@ -1,6 +1,7 @@
 import Button from "@/components/common/Button/Button";
 import styles from "./admin.module.css";
-import { BoxIcon, DollarSign, Package, Plus } from "lucide-react";
+import { BoxIcon, DollarSign, Package, Pen, Plus, Trash2 } from "lucide-react";
+import Image from "next/image";
 
 const Admin = () => {
   const cardDetails = [
@@ -52,6 +53,61 @@ const Admin = () => {
                   <div>{data.title}</div>
                   <div style={{ color: `${data.color}`, fontSize: "24px" }}>
                     5
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+        <div className={styles.productContainer}>
+          <div
+            className="heading"
+            style={{
+              color: "var(--color-darkPink)",
+              fontSize: "32px",
+              textAlign: "start",
+            }}
+          >
+            <span style={{ fontFamily: "var(--font-knotnoodle)" }}>A</span>LL PR
+            <span style={{ fontFamily: "var(--font-knotnoodle)" }}>O</span>DUCTS
+          </div>
+          <div className={styles.table}>
+            <div style={{ width: "100px" }}>Image</div>
+            <div style={{ width: "180px" }}>Name</div>
+            <div style={{ width: "100px" }}>Category</div>
+            <div style={{ width: "100px" }}>Price </div>
+            <div style={{ width: "100px" }}>Action</div>
+          </div>
+
+          <div style={{ borderBottom: "3px solid var(--color-primary)" }}></div>
+          {[1, 2, 3].map((data, index) => {
+            return (
+              <div className={styles.tableContent} key={index}>
+                <div style={{ width: "100px" }}>
+                  <img
+                    src={"/Images/Huntrix.jpg"}
+                    alt="Product"
+                    className={styles.productImage}
+                  />
+                </div>
+                <div style={{ width: "180px" }} className={styles.productName}>
+                  Huntrix Plushy
+                </div>
+                <div style={{ width: "100px" }}>
+                  <div className={styles.productType}>Plushies</div>
+                </div>
+                <div style={{ width: "100px" }} className={styles.productPrice}>
+                  Rs. 4500{" "}
+                </div>
+                <div style={{ width: "100px", display: "flex", gap: "12px" }}>
+                  <div className={styles.action}>
+                    <Pen size={20} color="var(--color-blue)" />
+                  </div>
+                  <div
+                    className={styles.action}
+                    style={{ backgroundColor: "#f3bedaff" }}
+                  >
+                    <Trash2 size={20} color="red" />
                   </div>
                 </div>
               </div>
