@@ -1,0 +1,24 @@
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 64px 4px;
+  background-color: var(--color-lightPink);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  max-width: 1280px;
+  align-items: center;
+  gap: 40px;
+}
+
+.backButton {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--color-darkPink);
+  text-align: left;
+  font-size: 18px;
+}
