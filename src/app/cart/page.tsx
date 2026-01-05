@@ -13,7 +13,7 @@ const Cart = () => {
           SH<span style={{ fontFamily: "var(--font-knotnoodle)" }}>O</span>PPING
           C<span style={{ fontFamily: "var(--font-knotnoodle)" }}>A</span>RT
         </div>
-        <div></div>
+        <div className={styles.products}></div>
       </div>
     </div>
   );
