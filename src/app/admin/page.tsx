@@ -78,6 +78,81 @@ const Admin = () => {
               <span style={{ fontFamily: "var(--font-knotnoodle)" }}>O</span>
               DUCT
             </div>
+            <div className={styles.inputField}>
+              <div style={{ display: "flex", gap: "16px" }}>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    width: "100%",
+                    gap: "8px",
+                  }}
+                >
+                  <div className={styles.inputTitle}>Name</div>
+                  <input className={styles.inputLine} />
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    width: "100%",
+                    gap: "8px",
+                  }}
+                >
+                  <div className={styles.inputTitle}>Category</div>
+                  <input className={styles.inputLine} />
+                </div>
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  width: "100%",
+                  gap: "8px",
+                }}
+              >
+                <div className={styles.inputTitle}>Description</div>
+                <input
+                  className={styles.inputLine}
+                  style={{ height: "15vh" }}
+                />
+              </div>
+              <div style={{ display: "flex", gap: "16px" }}>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    width: "100%",
+                    gap: "8px",
+                  }}
+                >
+                  <div className={styles.inputTitle}>Price</div>
+                  <input className={styles.inputLine} />
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    width: "100%",
+                    gap: "8px",
+                  }}
+                >
+                  <div className={styles.inputTitle}>Stock</div>
+                  <input className={styles.inputLine} />
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    width: "100%",
+                    gap: "8px",
+                  }}
+                >
+                  <div className={styles.inputTitle}>Image Url</div>
+                  <input className={styles.inputLine} />
+                </div>
+              </div>
+            </div>
           </div>
           <div className={styles.productContainer}>
             <div
@@ -106,8 +181,8 @@ const Admin = () => {
             ></div>
             {[1, 2, 3].map((data, index) => {
               return (
-                <>
-                  <div className={styles.tableContent} key={index}>
+                <div key={index}>
+                  <div className={styles.tableContent}>
                     <div style={{ width: "100px" }}>
                       <img
                         src={"/Images/Huntrix.jpg"}
@@ -147,7 +222,7 @@ const Admin = () => {
                   <div
                     style={{ border: "1px solid rgba(240, 240, 240, 1)" }}
                   ></div>
-                </>
+                </div>
               );
             })}
           </div>

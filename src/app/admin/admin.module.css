@@ -124,3 +124,24 @@
 .tableContent:hover {
   background-color: #fce4ec;
 }
+
+.inputField {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.inputLine {
+  border: 3px solid #edabe188;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.inputLine:focus {
+  border: 2px solid #b568a788;
+  outline: none;
+}
+
+.inputTitle {
+  font-size: 18px;
+}
