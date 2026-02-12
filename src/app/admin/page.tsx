@@ -63,6 +63,22 @@ const Admin = () => {
               );
             })}
           </div>
+          <div className={styles.addProductContainer}>
+            <div
+              className="heading"
+              style={{
+                color: "var(--color-darkPink)",
+                fontSize: "32px",
+                textAlign: "start",
+              }}
+            >
+              <span style={{ fontFamily: "var(--font-knotnoodle)" }}>A</span>DD
+              N<span style={{ fontFamily: "var(--font-knotnoodle)" }}>E</span>W
+              PR
+              <span style={{ fontFamily: "var(--font-knotnoodle)" }}>O</span>
+              DUCT
+            </div>
+          </div>
           <div className={styles.productContainer}>
             <div
               className="heading"
