@@ -16,6 +16,11 @@ import { useState } from "react";
 
 const Admin = () => {
   const [openDrawer, setOpenDrawer] = useState(false);
+  const [name, setName] = useState("");
+  const [category, setCategory] = useState("");
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState();
+  const [stock, setStock] = useState("");
   const cardDetails = [
     {
       Icon: Package,
@@ -108,7 +113,7 @@ const Admin = () => {
                     }}
                   >
                     <div className={styles.inputTitle}>Name</div>
-                    <input className={styles.inputLine} />
+                    <input className={styles.inputLine} value={name} />
                   </div>
                   <div
                     style={{
@@ -119,7 +124,7 @@ const Admin = () => {
                     }}
                   >
                     <div className={styles.inputTitle}>Category</div>
-                    <input className={styles.inputLine} />
+                    <input className={styles.inputLine} value={category} />
                   </div>
                 </div>
                 <div
@@ -131,9 +136,13 @@ const Admin = () => {
                   }}
                 >
                   <div className={styles.inputTitle}>Description</div>
-                  <input
+                  <textarea
                     className={styles.inputLine}
+                    value={description}
                     style={{ height: "15vh" }}
+                    onChange={(e) => {
+                      setDescription(e.target.value);
+                    }}
                   />
                 </div>
                 <div style={{ display: "flex", gap: "16px" }}>
@@ -146,7 +155,7 @@ const Admin = () => {
                     }}
                   >
                     <div className={styles.inputTitle}>Price</div>
-                    <input className={styles.inputLine} />
+                    <input className={styles.inputLine} value={price} />
                   </div>
                   <div
                     style={{
@@ -157,7 +166,7 @@ const Admin = () => {
                     }}
                   >
                     <div className={styles.inputTitle}>Stock</div>
-                    <input className={styles.inputLine} />
+                    <input className={styles.inputLine} value={stock} />
                   </div>
                   <div
                     style={{
