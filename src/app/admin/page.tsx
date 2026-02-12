@@ -1,10 +1,21 @@
+"use client";
 import Button from "@/components/common/Button/Button";
 import styles from "./admin.module.css";
-import { BoxIcon, DollarSign, Package, Pen, Plus, Trash2 } from "lucide-react";
-import Image from "next/image";
+import {
+  Box,
+  BoxIcon,
+  DollarSign,
+  Package,
+  Pen,
+  Plus,
+  Trash2,
+} from "lucide-react";
 import Wave from "@/components/common/Wave";
+import { Close } from "@mui/icons-material";
+import { useState } from "react";
 
 const Admin = () => {
+  const [openDrawer, setOpenDrawer] = useState(false);
   const cardDetails = [
     {
       Icon: Package,
@@ -37,7 +48,13 @@ const Admin = () => {
               SHBO
               <span style={{ fontFamily: "var(--font-knotnoodle)" }}>A</span>RD
             </div>
-            <Button text="Add New Product " Icon={Plus} />
+            <Button
+              text="Add New Product "
+              Icon={Plus}
+              onClick={() => {
+                setOpenDrawer(true);
+              }}
+            />
           </div>
           <div className={styles.cardContainer}>
             {cardDetails.map((data, index) => {
@@ -63,97 +80,118 @@ const Admin = () => {
               );
             })}
           </div>
-          <div className={styles.addProductContainer}>
-            <div
-              className="heading"
-              style={{
-                color: "var(--color-darkPink)",
-                fontSize: "32px",
-                textAlign: "start",
-              }}
-            >
-              <span style={{ fontFamily: "var(--font-knotnoodle)" }}>A</span>DD
-              N<span style={{ fontFamily: "var(--font-knotnoodle)" }}>E</span>W
-              PR
-              <span style={{ fontFamily: "var(--font-knotnoodle)" }}>O</span>
-              DUCT
-            </div>
-            <div className={styles.inputField}>
-              <div style={{ display: "flex", gap: "16px" }}>
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    width: "100%",
-                    gap: "8px",
-                  }}
-                >
-                  <div className={styles.inputTitle}>Name</div>
-                  <input className={styles.inputLine} />
-                </div>
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    width: "100%",
-                    gap: "8px",
-                  }}
-                >
-                  <div className={styles.inputTitle}>Category</div>
-                  <input className={styles.inputLine} />
-                </div>
-              </div>
+          {openDrawer && (
+            <div className={styles.addProductContainer}>
               <div
+                className="heading"
                 style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  width: "100%",
-                  gap: "8px",
+                  color: "var(--color-darkPink)",
+                  fontSize: "32px",
+                  textAlign: "start",
                 }}
               >
-                <div className={styles.inputTitle}>Description</div>
-                <input
-                  className={styles.inputLine}
-                  style={{ height: "15vh" }}
+                <span style={{ fontFamily: "var(--font-knotnoodle)" }}>A</span>
+                DD N
+                <span style={{ fontFamily: "var(--font-knotnoodle)" }}>E</span>W
+                PR
+                <span style={{ fontFamily: "var(--font-knotnoodle)" }}>O</span>
+                DUCT
+              </div>
+              <div className={styles.inputField}>
+                <div style={{ display: "flex", gap: "16px" }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      width: "100%",
+                      gap: "8px",
+                    }}
+                  >
+                    <div className={styles.inputTitle}>Name</div>
+                    <input className={styles.inputLine} />
+                  </div>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      width: "100%",
+                      gap: "8px",
+                    }}
+                  >
+                    <div className={styles.inputTitle}>Category</div>
+                    <input className={styles.inputLine} />
+                  </div>
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    width: "100%",
+                    gap: "8px",
+                  }}
+                >
+                  <div className={styles.inputTitle}>Description</div>
+                  <input
+                    className={styles.inputLine}
+                    style={{ height: "15vh" }}
+                  />
+                </div>
+                <div style={{ display: "flex", gap: "16px" }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      width: "100%",
+                      gap: "8px",
+                    }}
+                  >
+                    <div className={styles.inputTitle}>Price</div>
+                    <input className={styles.inputLine} />
+                  </div>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      width: "100%",
+                      gap: "8px",
+                    }}
+                  >
+                    <div className={styles.inputTitle}>Stock</div>
+                    <input className={styles.inputLine} />
+                  </div>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      width: "100%",
+                      gap: "8px",
+                    }}
+                  >
+                    <div className={styles.inputTitle}>Image Url</div>
+                    <input className={styles.inputLine} />
+                  </div>
+                </div>
+              </div>
+              <div style={{ display: "flex", gap: "8px" }}>
+                <Button
+                  text="Add Product"
+                  Icon={Box}
+                  containerStyles={{ width: "fit-content" }}
+                />
+                <Button
+                  text="Cancel"
+                  Icon={Close}
+                  containerStyles={{
+                    width: "fit-content",
+                    backgroundColor: "var(--color-blue)",
+                  }}
+                  onClick={() => {
+                    setOpenDrawer(false);
+                  }}
                 />
               </div>
-              <div style={{ display: "flex", gap: "16px" }}>
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    width: "100%",
-                    gap: "8px",
-                  }}
-                >
-                  <div className={styles.inputTitle}>Price</div>
-                  <input className={styles.inputLine} />
-                </div>
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    width: "100%",
-                    gap: "8px",
-                  }}
-                >
-                  <div className={styles.inputTitle}>Stock</div>
-                  <input className={styles.inputLine} />
-                </div>
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    width: "100%",
-                    gap: "8px",
-                  }}
-                >
-                  <div className={styles.inputTitle}>Image Url</div>
-                  <input className={styles.inputLine} />
-                </div>
-              </div>
             </div>
-          </div>
+          )}
           <div className={styles.productContainer}>
             <div
               className="heading"
