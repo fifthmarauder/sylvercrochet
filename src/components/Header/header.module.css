@@ -1,5 +1,5 @@
 .main {
-  background-color: var(--color-lilac);
+  background-color: rgb(80, 13, 80);
   display: flex;
   justify-content: space-between;
   align-items: center;

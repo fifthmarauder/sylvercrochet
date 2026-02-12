@@ -19,8 +19,9 @@ const Admin = () => {
   const [name, setName] = useState("");
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
-  const [price, setPrice] = useState();
+  const [price, setPrice] = useState(0);
   const [stock, setStock] = useState("");
+  const [imageurl, setImageurl] = useState("");
   const cardDetails = [
     {
       Icon: Package,
@@ -113,7 +114,13 @@ const Admin = () => {
                     }}
                   >
                     <div className={styles.inputTitle}>Name</div>
-                    <input className={styles.inputLine} value={name} />
+                    <input
+                      className={styles.inputLine}
+                      value={name}
+                      onChange={(e) => {
+                        setName(e.target.value);
+                      }}
+                    />
                   </div>
                   <div
                     style={{
@@ -124,7 +131,13 @@ const Admin = () => {
                     }}
                   >
                     <div className={styles.inputTitle}>Category</div>
-                    <input className={styles.inputLine} value={category} />
+                    <input
+                      className={styles.inputLine}
+                      value={category}
+                      onChange={(e) => {
+                        setCategory(e.target.value);
+                      }}
+                    />
                   </div>
                 </div>
                 <div
@@ -155,7 +168,14 @@ const Admin = () => {
                     }}
                   >
                     <div className={styles.inputTitle}>Price</div>
-                    <input className={styles.inputLine} value={price} />
+                    <input
+                      className={styles.inputLine}
+                      value={price}
+                      type="number"
+                      onChange={(e) => {
+                        setPrice(Number(e.target.value));
+                      }}
+                    />
                   </div>
                   <div
                     style={{
@@ -166,7 +186,13 @@ const Admin = () => {
                     }}
                   >
                     <div className={styles.inputTitle}>Stock</div>
-                    <input className={styles.inputLine} value={stock} />
+                    <input
+                      className={styles.inputLine}
+                      value={stock}
+                      onChange={(e) => {
+                        setStock(e.target.value);
+                      }}
+                    />
                   </div>
                   <div
                     style={{
@@ -177,7 +203,13 @@ const Admin = () => {
                     }}
                   >
                     <div className={styles.inputTitle}>Image Url</div>
-                    <input className={styles.inputLine} />
+                    <input
+                      className={styles.inputLine}
+                      value={imageurl}
+                      onChange={(e) => {
+                        setImageurl(e.target.value);
+                      }}
+                    />
                   </div>
                 </div>
               </div>
