@@ -1,5 +1,5 @@
 .main {
-  background-color: rgb(80, 13, 80);
+  background-color: var(--color-surfaceBlack);
   display: flex;
   justify-content: space-between;
   align-items: center;

@@ -13,15 +13,17 @@ import {
 import Wave from "@/components/common/Wave";
 import { Close } from "@mui/icons-material";
 import { useState } from "react";
+import { toast } from "react-toastify";
+import { api } from "../api";
 
 const Admin = () => {
   const [openDrawer, setOpenDrawer] = useState(false);
   const [name, setName] = useState("");
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
-  const [price, setPrice] = useState(0);
-  const [stock, setStock] = useState("");
-  const [imageurl, setImageurl] = useState("");
+  const [price, setPrice] = useState("");
+  const [stock, setStock] = useState(true);
+  const [images, setImages] = useState("");
   const cardDetails = [
     {
       Icon: Package,
@@ -42,6 +44,27 @@ const Admin = () => {
       color: "#8d128dff",
     },
   ];
+
+  const handleAddProduct = async () => {
+    if (!name || !category || !description || !price || !images) {
+      toast.error("Please fill all required fields");
+      return;
+    }
+    try {
+      await api.post("/api/users/addProduct", {
+        name,
+        category,
+        description,
+        price,
+        stock,
+        images,
+      });
+      toast.success("Added successfully");
+      setOpenDrawer(false);
+    } catch (error: any) {
+      toast.error(error.response?.data?.message || "Failed to add product");
+    }
+  };
   return (
     <>
       <div className={styles.main}>
@@ -113,7 +136,7 @@ const Admin = () => {
                       gap: "8px",
                     }}
                   >
-                    <div className={styles.inputTitle}>Name</div>
+                    <div className={styles.inputTitle}>Name *</div>
                     <input
                       className={styles.inputLine}
                       value={name}
@@ -130,7 +153,7 @@ const Admin = () => {
                       gap: "8px",
                     }}
                   >
-                    <div className={styles.inputTitle}>Category</div>
+                    <div className={styles.inputTitle}>Category *</div>
                     <input
                       className={styles.inputLine}
                       value={category}
@@ -148,7 +171,7 @@ const Admin = () => {
                     gap: "8px",
                   }}
                 >
-                  <div className={styles.inputTitle}>Description</div>
+                  <div className={styles.inputTitle}>Description *</div>
                   <textarea
                     className={styles.inputLine}
                     value={description}
@@ -167,13 +190,13 @@ const Admin = () => {
                       gap: "8px",
                     }}
                   >
-                    <div className={styles.inputTitle}>Price</div>
+                    <div className={styles.inputTitle}>Price *</div>
                     <input
                       className={styles.inputLine}
                       value={price}
                       type="number"
                       onChange={(e) => {
-                        setPrice(Number(e.target.value));
+                        setPrice(e.target.value);
                       }}
                     />
                   </div>
@@ -186,13 +209,17 @@ const Admin = () => {
                     }}
                   >
                     <div className={styles.inputTitle}>Stock</div>
-                    <input
+                    <select
                       className={styles.inputLine}
-                      value={stock}
+                      value={stock ? "true" : "false"}
                       onChange={(e) => {
-                        setStock(e.target.value);
+                        setStock(e.target.value === "true");
                       }}
-                    />
+                    >
+                      {" "}
+                      <option value="true">True</option>
+                      <option value="false">False</option>
+                    </select>
                   </div>
                   <div
                     style={{
@@ -202,12 +229,12 @@ const Admin = () => {
                       gap: "8px",
                     }}
                   >
-                    <div className={styles.inputTitle}>Image Url</div>
+                    <div className={styles.inputTitle}>Image Url *</div>
                     <input
                       className={styles.inputLine}
-                      value={imageurl}
+                      value={images}
                       onChange={(e) => {
-                        setImageurl(e.target.value);
+                        setImages(e.target.value);
                       }}
                     />
                   </div>
@@ -218,6 +245,9 @@ const Admin = () => {
                   text="Add Product"
                   Icon={Box}
                   containerStyles={{ width: "fit-content" }}
+                  onClick={() => {
+                    handleAddProduct();
+                  }}
                 />
                 <Button
                   text="Cancel"

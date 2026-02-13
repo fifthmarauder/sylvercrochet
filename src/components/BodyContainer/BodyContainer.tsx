@@ -30,7 +30,7 @@ const BodyContainer = () => {
         <Image
           src={"/Images/spiderverse.png"}
           height={800}
-          width={800}
+          width={700}
           alt="CrochetImage"
           style={{ position: "absolute", top: "0px", right: "70px" }}
           className={styles.spiderverseImage}

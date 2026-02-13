@@ -3,6 +3,7 @@ import "./globals.css";
 
 import localFont from "next/font/local";
 import Footer from "@/components/Footer/Footer";
+import { ToastContainer } from "react-toastify";
 
 const sofia = localFont({
   src: [
@@ -56,6 +57,7 @@ export default function RootLayout({
       <body>
         <Header />
         {children}
+        <ToastContainer />
         <Footer />
       </body>
     </html>
