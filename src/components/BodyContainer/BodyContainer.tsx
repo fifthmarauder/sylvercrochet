@@ -88,8 +88,8 @@ const BodyContainer = () => {
           </div> */}
       </div>
       {/* </div> */}
-      <div style={{ backgroundColor: "var(--color-lightPink" }}>
-        <Wave color="var(--color-bgLight)" />
+      <div style={{ backgroundColor: "var(--color-lightPink)" }}>
+        <Wave color="#f6edda" />
       </div>
     </>
   );

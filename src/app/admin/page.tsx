@@ -11,8 +11,8 @@ import {
   Trash2,
 } from "lucide-react";
 import Wave from "@/components/common/Wave";
-import { Close } from "@mui/icons-material";
-import { useState } from "react";
+import { Close, Inventory } from "@mui/icons-material";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { api } from "../api";
 
@@ -24,24 +24,45 @@ const Admin = () => {
   const [price, setPrice] = useState("");
   const [stock, setStock] = useState(true);
   const [images, setImages] = useState("");
+  const [stats, setStats] = useState({
+    totalProducts: 0,
+    totalStock: 0,
+    inventoryValue: 0,
+  });
+
+  useEffect(() => {
+    fetchStats();
+  }, []);
+
+  const fetchStats = async () => {
+    try {
+      const response = await api.get("/api/users/stats");
+      setStats(response.data);
+    } catch (error: any) {
+      toast.error("Failed to fetch statistics");
+    }
+  };
   const cardDetails = [
     {
       Icon: Package,
       title: "Total Products",
       bgColor: "#fff1f2",
       color: "var(--color-darkPink)",
+      value: stats.totalProducts,
     },
     {
       Icon: DollarSign,
       title: "Inventory Value",
       bgColor: "#ebf8ff",
       color: "var(--color-blue)",
+      value: `Rs. ${stats.inventoryValue.toLocaleString()}`,
     },
     {
       Icon: BoxIcon,
       title: "Total Stock",
       bgColor: "#faf5ff",
       color: "#8d128dff",
+      value: stats.totalStock,
     },
   ];
 
@@ -61,6 +82,7 @@ const Admin = () => {
       });
       toast.success("Added successfully");
       setOpenDrawer(false);
+      fetchStats();
     } catch (error: any) {
       toast.error(error.response?.data?.message || "Failed to add product");
     }
@@ -102,7 +124,7 @@ const Admin = () => {
                   <div className={styles.cardInfo}>
                     <div>{data.title}</div>
                     <div style={{ color: `${data.color}`, fontSize: "24px" }}>
-                      5
+                      {data.value}
                     </div>
                   </div>
                 </div>

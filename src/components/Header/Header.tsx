@@ -12,12 +12,10 @@ const Header = () => {
   useEffect(() => {
     pathName.startsWith("/shop") || pathName.startsWith("/admin")
       ? setBackgroundColor("var(--color-lightPink)")
-      : setBackgroundColor("var(--color-bgLight)");
+      : setBackgroundColor("#f6edda");
   }, [pathName]);
 
-  const [backgroundColor, setBackgroundColor] = useState(
-    "var(--color-bgLight)"
-  );
+  const [backgroundColor, setBackgroundColor] = useState("#f6edda");
 
   return (
     <div style={{ backgroundColor: backgroundColor }}>
