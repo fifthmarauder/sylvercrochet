@@ -29,9 +29,11 @@ const Admin = () => {
     totalStock: 0,
     inventoryValue: 0,
   });
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
     fetchStats();
+    fetchProducts();
   }, []);
 
   const fetchStats = async () => {
@@ -42,6 +44,38 @@ const Admin = () => {
       toast.error("Failed to fetch statistics");
     }
   };
+  const fetchProducts = async () => {
+    try {
+      const response = await api.get("/api/users/adminProducts");
+      setProducts(response.data);
+    } catch (error: any) {
+      toast.error("Failed to fetch products");
+    }
+  };
+
+  const handleAddProduct = async () => {
+    if (!name || !category || !description || !price || !images) {
+      toast.error("Please fill all required fields");
+      return;
+    }
+    try {
+      await api.post("/api/users/addProduct", {
+        name,
+        category,
+        description,
+        price,
+        stock,
+        images,
+      });
+      toast.success("Added successfully");
+      setOpenDrawer(false);
+      fetchStats();
+      fetchProducts();
+    } catch (error: any) {
+      toast.error(error.response?.data?.message || "Failed to add product");
+    }
+  };
+
   const cardDetails = [
     {
       Icon: Package,
@@ -65,28 +99,6 @@ const Admin = () => {
       value: stats.totalStock,
     },
   ];
-
-  const handleAddProduct = async () => {
-    if (!name || !category || !description || !price || !images) {
-      toast.error("Please fill all required fields");
-      return;
-    }
-    try {
-      await api.post("/api/users/addProduct", {
-        name,
-        category,
-        description,
-        price,
-        stock,
-        images,
-      });
-      toast.success("Added successfully");
-      setOpenDrawer(false);
-      fetchStats();
-    } catch (error: any) {
-      toast.error(error.response?.data?.message || "Failed to add product");
-    }
-  };
   return (
     <>
       <div className={styles.main}>
@@ -310,52 +322,68 @@ const Admin = () => {
             <div
               style={{ borderBottom: "3px solid var(--color-primary)" }}
             ></div>
-            {[1, 2, 3].map((data, index) => {
-              return (
-                <div key={index}>
-                  <div className={styles.tableContent}>
-                    <div style={{ width: "100px" }}>
-                      <img
-                        src={"/Images/Huntrix.jpg"}
-                        alt="Product"
-                        className={styles.productImage}
-                      />
-                    </div>
-                    <div
-                      style={{ width: "180px" }}
-                      className={styles.productName}
-                    >
-                      Huntrix Plushy
-                    </div>
-                    <div style={{ width: "100px" }}>
-                      <div className={styles.productType}>Plushies</div>
-                    </div>
-                    <div
-                      style={{ width: "100px" }}
-                      className={styles.productPrice}
-                    >
-                      Rs. 4500{" "}
-                    </div>
-                    <div
-                      style={{ width: "100px", display: "flex", gap: "12px" }}
-                    >
-                      <div className={styles.action}>
-                        <Pen size={20} color="var(--color-blue)" />
+            {products.length > 0 ? (
+              products.map((data: any, index) => {
+                return (
+                  <div key={index}>
+                    <div className={styles.tableContent}>
+                      <div style={{ width: "100px" }}>
+                        <img
+                          src={data.images}
+                          // {product.images || "/Images/placeholder.jpg"}
+                          alt="Product"
+                          className={styles.productImage}
+                        />
                       </div>
                       <div
-                        className={styles.action}
-                        style={{ backgroundColor: "#f3bedaff" }}
+                        style={{ width: "180px" }}
+                        className={styles.productName}
                       >
-                        <Trash2 size={20} color="red" />
+                        {data.name}
+                      </div>
+                      <div style={{ width: "100px" }}>
+                        <div className={styles.productType}>
+                          {data.category}
+                        </div>
+                      </div>
+                      <div
+                        style={{ width: "100px" }}
+                        className={styles.productPrice}
+                      >
+                        Rs. {data.price}
+                      </div>
+                      <div
+                        style={{
+                          width: "100px",
+                          display: "flex",
+                          gap: "12px",
+                        }}
+                      >
+                        <div className={styles.action}>
+                          <Pen size={20} color="var(--color-blue)" />
+                        </div>
+                        <div
+                          className={styles.action}
+                          style={{ backgroundColor: "#f3bedaff" }}
+                        >
+                          <Trash2 size={20} color="red" />
+                        </div>
                       </div>
                     </div>
+                    <div
+                      style={{ border: "1px solid rgba(240, 240, 240, 1)" }}
+                    ></div>
                   </div>
-                  <div
-                    style={{ border: "1px solid rgba(240, 240, 240, 1)" }}
-                  ></div>
-                </div>
-              );
-            })}
+                );
+              })
+            ) : (
+              <div
+                style={{ padding: "20px", textAlign: "center" }}
+                className="heading"
+              >
+                No products found
+              </div>
+            )}
           </div>
         </div>
       </div>
