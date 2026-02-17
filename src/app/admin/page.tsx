@@ -18,6 +18,8 @@ import { api } from "../api";
 
 const Admin = () => {
   const [openDrawer, setOpenDrawer] = useState(false);
+  const [isEditMode, setIsEditMode] = useState(false);
+  const [editingProductId, setEditingProductId] = useState<string | null>(null);
   const [name, setName] = useState("");
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
@@ -44,6 +46,17 @@ const Admin = () => {
       toast.error("Failed to fetch statistics");
     }
   };
+
+  const clearForm = () => {
+    setName("");
+    setCategory("");
+    setDescription("");
+    setPrice("");
+    setStock(true);
+    setImages("");
+    setIsEditMode(false);
+    setEditingProductId(null);
+  };
   const fetchProducts = async () => {
     try {
       const response = await api.get("/api/users/adminProducts");
@@ -59,16 +72,29 @@ const Admin = () => {
       return;
     }
     try {
-      await api.post("/api/users/addProduct", {
-        name,
-        category,
-        description,
-        price,
-        stock,
-        images,
-      });
-      toast.success("Added successfully");
+      if (isEditMode && editingProductId) {
+        await api.put(`/api/users/updateProduct/${editingProductId}`, {
+          name,
+          category,
+          description,
+          price: Number(price),
+          stock,
+          images,
+        });
+        toast.success("Product updated successfully");
+      } else {
+        await api.post("/api/users/addProduct", {
+          name,
+          category,
+          description,
+          price,
+          stock,
+          images,
+        });
+        toast.success("Added successfully");
+      }
       setOpenDrawer(false);
+      clearForm();
       fetchStats();
       fetchProducts();
     } catch (error: any) {
@@ -76,6 +102,36 @@ const Admin = () => {
     }
   };
 
+  const handleEdit = async (product: any) => {
+    setName(product.name);
+    setCategory(product.category);
+    setDescription(product.description);
+    setPrice(product.price.toString());
+    setStock(Boolean(product.stock));
+    setImages(product.images);
+    setIsEditMode(true);
+    setEditingProductId(product._id);
+    setOpenDrawer(true);
+  };
+
+  const handleDelete = async (productId: string) => {
+    if (!window.confirm("Are you sure you want to delete this product?")) {
+      return;
+    }
+
+    try {
+      await api.delete(`/api/users/deleteProduct/${productId}`);
+      toast.success("Product deleted successfully");
+      fetchProducts();
+      fetchStats();
+    } catch (error: any) {
+      toast.error(error.response?.data?.message || "Failed to delete product");
+    }
+  };
+  const handleCancel = () => {
+    setOpenDrawer(false);
+    clearForm();
+  };
   const cardDetails = [
     {
       Icon: Package,
@@ -115,6 +171,7 @@ const Admin = () => {
               text="Add New Product "
               Icon={Plus}
               onClick={() => {
+                clearForm();
                 setOpenDrawer(true);
               }}
             />
@@ -153,12 +210,33 @@ const Admin = () => {
                   textAlign: "start",
                 }}
               >
-                <span style={{ fontFamily: "var(--font-knotnoodle)" }}>A</span>
-                DD N
-                <span style={{ fontFamily: "var(--font-knotnoodle)" }}>E</span>W
-                PR
-                <span style={{ fontFamily: "var(--font-knotnoodle)" }}>O</span>
-                DUCT
+                {isEditMode ? (
+                  <>
+                    <span style={{ fontFamily: "var(--font-knotnoodle)" }}>
+                      E
+                    </span>
+                    DIT PR
+                    <span style={{ fontFamily: "var(--font-knotnoodle)" }}>
+                      O
+                    </span>
+                    DUCT
+                  </>
+                ) : (
+                  <>
+                    <span style={{ fontFamily: "var(--font-knotnoodle)" }}>
+                      A
+                    </span>
+                    DD N
+                    <span style={{ fontFamily: "var(--font-knotnoodle)" }}>
+                      E
+                    </span>
+                    W PR
+                    <span style={{ fontFamily: "var(--font-knotnoodle)" }}>
+                      O
+                    </span>
+                    DUCT
+                  </>
+                )}
               </div>
               <div className={styles.inputField}>
                 <div style={{ display: "flex", gap: "16px" }}>
@@ -276,11 +354,12 @@ const Admin = () => {
               </div>
               <div style={{ display: "flex", gap: "8px" }}>
                 <Button
-                  text="Add Product"
+                  text={isEditMode ? "Update Product" : "Add Product"}
                   Icon={Box}
                   containerStyles={{ width: "fit-content" }}
                   onClick={() => {
                     handleAddProduct();
+                    console.log(stock);
                   }}
                 />
                 <Button
@@ -291,7 +370,7 @@ const Admin = () => {
                     backgroundColor: "var(--color-blue)",
                   }}
                   onClick={() => {
-                    setOpenDrawer(false);
+                    handleCancel();
                   }}
                 />
               </div>
@@ -359,12 +438,19 @@ const Admin = () => {
                           gap: "12px",
                         }}
                       >
-                        <div className={styles.action}>
+                        <div
+                          className={styles.action}
+                          onClick={() => {
+                            handleEdit(data);
+                            console.log(data.stock, data.description);
+                          }}
+                        >
                           <Pen size={20} color="var(--color-blue)" />
                         </div>
                         <div
                           className={styles.action}
                           style={{ backgroundColor: "#f3bedaff" }}
+                          onClick={() => handleDelete(data._id)}
                         >
                           <Trash2 size={20} color="red" />
                         </div>
