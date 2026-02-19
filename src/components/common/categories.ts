@@ -1,5 +1,4 @@
-export   const Categories = [
-    "All",
+export  const Categories = [
     "Dolls",
     "KeyChains",
     "Plushies",
