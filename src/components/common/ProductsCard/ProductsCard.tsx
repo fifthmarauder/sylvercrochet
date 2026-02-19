@@ -17,17 +17,17 @@ const ProductsCard = ({ product }: ProductCardProps) => {
   return (
     <div className={styles.productCard}>
       <img
-        src={product.images || "/Images/placeholder.jpg"}
-        alt={product.name}
+        src={product?.images || "/Images/placeholder.jpg"}
+        alt={product?.name}
         className={styles.productImage}
       />
       <div className={styles.productInfo}>
-        <div className={styles.productType}>{product.category}</div>
+        <div className={styles.productType}>{product?.category}</div>
       </div>
-      <div className={styles.productName}>{product.name}</div>
-      <div className={styles.productDescription}>{product.description}</div>
+      <div className={styles.productName}>{product?.name}</div>
+      <div className={styles.productDescription}>{product?.description}</div>
       <div className={styles.priceContainer}>
-        <div className={styles.productPrice}>Rs. {product.price}</div>
+        <div className={styles.productPrice}>Rs. {product?.price}</div>
         <Button
           text="Add to Cart"
           Icon={ShoppingCart}

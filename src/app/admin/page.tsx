@@ -27,6 +27,7 @@ const Admin = () => {
   const [price, setPrice] = useState("");
   const [stock, setStock] = useState(true);
   const [images, setImages] = useState("");
+  const [isFeatured, setIsFeatured] = useState(false);
   const [stats, setStats] = useState({
     totalProducts: 0,
     totalStock: 0,
@@ -54,6 +55,7 @@ const Admin = () => {
     setDescription("");
     setPrice("");
     setStock(true);
+    setIsFeatured(false);
     setImages("");
     setIsEditMode(false);
     setEditingProductId(null);
@@ -79,6 +81,7 @@ const Admin = () => {
           category,
           description,
           price: Number(price),
+          isFeatured,
           stock,
           images,
         });
@@ -89,6 +92,7 @@ const Admin = () => {
           category,
           description,
           price,
+          isFeatured,
           stock,
           images,
         });
@@ -110,6 +114,7 @@ const Admin = () => {
     setPrice(product.price.toString());
     setStock(Boolean(product.stock));
     setImages(product.images);
+    setIsFeatured(product.isFeatured || false);
     setIsEditMode(true);
     setEditingProductId(product._id);
     setOpenDrawer(true);
@@ -342,6 +347,24 @@ const Admin = () => {
                       {" "}
                       <option value="true">True</option>
                       <option value="false">False</option>
+                    </select>
+                  </div>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      width: "100%",
+                      gap: "8px",
+                    }}
+                  >
+                    <div className={styles.inputTitle}>Featured</div>
+                    <select
+                      className={styles.inputLine}
+                      value={isFeatured ? "true" : "false"}
+                      onChange={(e) => setIsFeatured(e.target.value === "true")}
+                    >
+                      <option value="false">No</option>
+                      <option value="true">Yes</option>
                     </select>
                   </div>
                   <div
