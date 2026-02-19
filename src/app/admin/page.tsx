@@ -15,6 +15,7 @@ import { Close, Inventory } from "@mui/icons-material";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { api } from "../api";
+import { Categories } from "@/components/common/categories";
 
 const Admin = () => {
   const [openDrawer, setOpenDrawer] = useState(false);
@@ -155,6 +156,7 @@ const Admin = () => {
       value: stats.totalStock,
     },
   ];
+
   return (
     <>
       <div className={styles.main}>
@@ -266,13 +268,22 @@ const Admin = () => {
                     }}
                   >
                     <div className={styles.inputTitle}>Category *</div>
-                    <input
+                    <select
                       className={styles.inputLine}
                       value={category}
                       onChange={(e) => {
                         setCategory(e.target.value);
                       }}
-                    />
+                    >
+                      <option value="">Select a Category</option>
+                      {Categories.map((data) => {
+                        return (
+                          <option key={data} value={data}>
+                            {data}
+                          </option>
+                        );
+                      })}
+                    </select>
                   </div>
                 </div>
                 <div
