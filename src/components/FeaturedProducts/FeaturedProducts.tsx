@@ -5,9 +5,26 @@ import styles from "./featuredproducts.module.css";
 import Wave from "../common/Wave";
 import ProductsCard from "../common/ProductsCard/ProductsCard";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { api } from "@/app/api";
+import { toast } from "react-toastify";
 
 const FeaturedProducts = () => {
   const router = useRouter();
+  const [product, setProduct] = useState([]);
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  const fetchProducts = async () => {
+    try {
+      const response = await api.get("/api/users/featured");
+      setProduct(response.data);
+    } catch (error: any) {
+      toast.error("Failed to fetch products");
+    }
+  };
   return (
     <>
       <div className={styles.main}>
@@ -24,13 +41,26 @@ const FeaturedProducts = () => {
             </div>
           </div>
           <div className={styles.productContainer}>
-            {[1, 2, 3].map((data, index) => {
-              return (
-                <div key={index} className={styles.productCard}>
-                  <ProductsCard />
-                </div>
-              );
-            })}
+            {product.length > 0 ? (
+              product.map((data, index) => {
+                return (
+                  <div key={index} className={styles.productCard}>
+                    <ProductsCard product={data} />
+                  </div>
+                );
+              })
+            ) : (
+              <div
+                style={{
+                  textAlign: "center",
+                  padding: "40px",
+                  width: "100%",
+                  color: "var(--color-darkPink)",
+                }}
+              >
+                No products found
+              </div>
+            )}
           </div>
           <Button
             text="View All Products"
