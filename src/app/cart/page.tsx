@@ -1,4 +1,4 @@
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Pen, Trash2 } from "lucide-react";
 import styles from "./cart.module.css";
 
 const Cart = () => {
@@ -13,7 +13,23 @@ const Cart = () => {
           SH<span style={{ fontFamily: "var(--font-knotnoodle)" }}>O</span>PPING
           C<span style={{ fontFamily: "var(--font-knotnoodle)" }}>A</span>RT
         </div>
-        <div className={styles.products}></div>
+        <div className={styles.productsContainer}>
+          <div className={styles.products}>
+            <div className={styles.productLeft}>
+              <img
+                src={"/Images/Huntrix.jpg"}
+                className={styles.productImage}
+              />
+              <div>
+                <div className={styles.productName}>Huntrix set</div>
+                <div>category</div>
+                <div>minus plus</div>
+              </div>
+            </div>
+            <div></div>
+          </div>
+          <div></div>
+        </div>
       </div>
     </div>
   );
