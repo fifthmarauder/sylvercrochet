@@ -1,5 +1,8 @@
-import { ArrowLeft, Pen, Trash2 } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import styles from "./cart.module.css";
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 
 const Cart = () => {
   return (
@@ -20,13 +23,36 @@ const Cart = () => {
                 src={"/Images/Huntrix.jpg"}
                 className={styles.productImage}
               />
-              <div>
+              <div className={styles.productDetails}>
                 <div className={styles.productName}>Huntrix set</div>
-                <div>category</div>
-                <div>minus plus</div>
+                <div className={styles.productCategory}>Category</div>
+                <div className={styles.actionButtons}>
+                  <AddIcon
+                    sx={{
+                      color: "var(--color-darkPink)",
+                      backgroundColor: "var(--color-lightPink)",
+                      borderRadius: "999px",
+                      padding: "6px",
+                    }}
+                  />
+                  <RemoveIcon
+                    sx={{
+                      color: "var(--color-darkPink)",
+                      backgroundColor: "var(--color-lightPink)",
+                      borderRadius: "999px",
+                      padding: "6px",
+                    }}
+                  />
+                </div>
               </div>
             </div>
-            <div></div>
+            <div className={styles.productRight}>
+              <div> trash</div>
+              <div>
+                <div>28 each</div>
+                <div>28.99</div>
+              </div>
+            </div>
           </div>
           <div></div>
         </div>
