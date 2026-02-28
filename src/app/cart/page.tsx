@@ -2,7 +2,7 @@ import { ArrowLeft } from "lucide-react";
 import styles from "./cart.module.css";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
-import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 
 const Cart = () => {
   return (
@@ -12,7 +12,10 @@ const Cart = () => {
           <ArrowLeft />
           Continue Shopping
         </div>
-        <div className="heading" style={{ color: "var(--color-darkPink)" }}>
+        <div
+          className="heading"
+          style={{ color: "var(--color-darkPink)", alignSelf: "self-start " }}
+        >
           SH<span style={{ fontFamily: "var(--font-knotnoodle)" }}>O</span>PPING
           C<span style={{ fontFamily: "var(--font-knotnoodle)" }}>A</span>RT
         </div>
@@ -47,14 +50,38 @@ const Cart = () => {
               </div>
             </div>
             <div className={styles.productRight}>
-              <div> trash</div>
+              <DeleteOutlineOutlinedIcon
+                sx={{
+                  color: "var(--color-darkPink)",
+                  fontSize: "28px",
+                }}
+                style={{ display: "flex", alignSelf: "end" }}
+              />
               <div>
-                <div>28 each</div>
-                <div>28.99</div>
+                <div className={styles.productCategory}>$28.99 each</div>
+                <div
+                  style={{
+                    color: "var(--color-darkPink)",
+                    fontWeight: "800",
+                    fontSize: "24px",
+                    textAlign: "right",
+                  }}
+                >
+                  28.99
+                </div>
               </div>
             </div>
           </div>
-          <div></div>
+          <div className={styles.checkoutContainer}>
+            <div>ORDER SUMMARY</div>
+            <div>
+              <div>Sub Total</div>
+              <div>Sub Total</div>
+            </div>
+            <div>line</div>
+            <div>total</div>
+            <div>proceed to checkout</div>
+          </div>
         </div>
       </div>
     </div>
