@@ -21,64 +21,96 @@ const Cart = () => {
         </div>
         <div className={styles.productsContainer}>
           <div className={styles.products}>
-            <div className={styles.productLeft}>
-              <img
-                src={"/Images/Huntrix.jpg"}
-                className={styles.productImage}
-              />
-              <div className={styles.productDetails}>
-                <div className={styles.productName}>Huntrix set</div>
-                <div className={styles.productCategory}>Category</div>
-                <div className={styles.actionButtons}>
-                  <AddIcon
-                    sx={{
-                      color: "var(--color-darkPink)",
-                      backgroundColor: "var(--color-lightPink)",
-                      borderRadius: "999px",
-                      padding: "6px",
-                    }}
-                  />
-                  <RemoveIcon
-                    sx={{
-                      color: "var(--color-darkPink)",
-                      backgroundColor: "var(--color-lightPink)",
-                      borderRadius: "999px",
-                      padding: "6px",
-                    }}
-                  />
-                </div>
-              </div>
-            </div>
-            <div className={styles.productRight}>
-              <DeleteOutlineOutlinedIcon
-                sx={{
-                  color: "var(--color-darkPink)",
-                  fontSize: "28px",
-                }}
-                style={{ display: "flex", alignSelf: "end" }}
-              />
-              <div>
-                <div className={styles.productCategory}>$28.99 each</div>
-                <div
-                  style={{
-                    color: "var(--color-darkPink)",
-                    fontWeight: "800",
-                    fontSize: "24px",
-                    textAlign: "right",
-                  }}
-                >
-                  28.99
-                </div>
-              </div>
-            </div>
+            {[1, 2, 3].map(() => {
+              return (
+                <>
+                  <div className={styles.product}>
+                    <div className={styles.productLeft}>
+                      <img
+                        src={"/Images/Huntrix.jpg"}
+                        className={styles.productImage}
+                      />
+                      <div className={styles.productDetails}>
+                        <div className={styles.productName}>Huntrix set</div>
+                        <div className={styles.productCategory}>Category</div>
+                        <div className={styles.actionButtons}>
+                          <AddIcon
+                            sx={{
+                              color: "var(--color-darkPink)",
+                              backgroundColor: "var(--color-lightPink)",
+                              borderRadius: "999px",
+                              padding: "6px",
+                            }}
+                          />
+                          <RemoveIcon
+                            sx={{
+                              color: "var(--color-darkPink)",
+                              backgroundColor: "var(--color-lightPink)",
+                              borderRadius: "999px",
+                              padding: "6px",
+                            }}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div className={styles.productRight}>
+                      <DeleteOutlineOutlinedIcon
+                        sx={{
+                          color: "var(--color-darkPink)",
+                          fontSize: "28px",
+                        }}
+                        style={{ display: "flex", alignSelf: "end" }}
+                      />
+                      <div>
+                        <div className={styles.productCategory}>
+                          $28.99 each
+                        </div>
+                        <div
+                          style={{
+                            color: "var(--color-darkPink)",
+                            fontWeight: "800",
+                            fontSize: "24px",
+                            textAlign: "right",
+                          }}
+                        >
+                          28.99
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    style={{ border: "1px solid rgba(240, 240, 240, 1)" }}
+                  ></div>
+                </>
+              );
+            })}
           </div>
           <div className={styles.checkoutContainer}>
-            <div>ORDER SUMMARY</div>
-            <div>
-              <div>Sub Total</div>
-              <div>Sub Total</div>
+            <div
+              className="heading"
+              style={{ fontSize: "32px", color: "var(--color-darkPink)" }}
+            >
+              ORD<span style={{ fontFamily: "var(--font-knotnoodle)" }}>E</span>
+              R SUM
+              <span style={{ fontFamily: "var(--font-knotnoodle)" }}>M</span>ARY
             </div>
-            <div>line</div>
+            <div>
+              <div
+                className={styles.productCategory}
+                style={{ fontSize: "18px", justifyContent: "space-between" }}
+              >
+                <div>Sub Total(1 items)</div>
+                <div>$28.99</div>
+              </div>
+              <div
+                className={styles.productCategory}
+                style={{ fontSize: "18px", justifyContent: "space-between" }}
+              >
+                <div>Shipping</div>
+                <div>Free</div>
+              </div>
+            </div>
+            <div style={{ border: "1px solid var(--color-darkPink)" }}></div>
             <div>total</div>
             <div>proceed to checkout</div>
           </div>
