@@ -113,6 +113,7 @@ const Cart = () => {
             <div style={{ border: "1px solid var(--color-darkPink)" }}></div>
             <div>total</div>
             <div>proceed to checkout</div>
+            <div></div>
           </div>
         </div>
       </div>
