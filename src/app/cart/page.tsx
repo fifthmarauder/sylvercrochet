@@ -3,6 +3,8 @@ import styles from "./cart.module.css";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
+import Button from "@/components/common/Button/Button";
+import CreditCardIcon from "@mui/icons-material/CreditCard";
 
 const Cart = () => {
   return (
@@ -94,7 +96,9 @@ const Cart = () => {
               R SUM
               <span style={{ fontFamily: "var(--font-knotnoodle)" }}>M</span>ARY
             </div>
-            <div>
+            <div
+              style={{ display: "flex", flexDirection: "column", gap: "12px" }}
+            >
               <div
                 className={styles.productCategory}
                 style={{ fontSize: "18px", justifyContent: "space-between" }}
@@ -111,9 +115,35 @@ const Cart = () => {
               </div>
             </div>
             <div style={{ border: "1px solid var(--color-darkPink)" }}></div>
-            <div>total</div>
-            <div>proceed to checkout</div>
-            <div></div>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
+              <div
+                className={styles.productCategory}
+                style={{ fontSize: "18px" }}
+              >
+                Total
+              </div>
+              <div
+                style={{
+                  color: "var(--color-darkPink)",
+                  fontWeight: "800",
+                  fontSize: "32px",
+                  textAlign: "right",
+                }}
+              >
+                28.99
+              </div>
+            </div>
+            <Button
+              text="Proceed to checkout"
+              Icon={CreditCardIcon}
+              containerStyles={{ display: "flex", justifyContent: "center" }}
+            />
           </div>
         </div>
       </div>
