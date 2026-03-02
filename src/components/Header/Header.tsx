@@ -10,7 +10,10 @@ const Header = () => {
   const pathName = usePathname();
 
   useEffect(() => {
-    pathName.startsWith("/shop") || pathName.startsWith("/admin")
+    pathName.startsWith("/shop") ||
+    pathName.startsWith("/admin") ||
+    pathName.startsWith("/cart") ||
+    pathName.startsWith("/checkout")
       ? setBackgroundColor("var(--color-lightPink)")
       : setBackgroundColor("#f6edda");
   }, [pathName]);
