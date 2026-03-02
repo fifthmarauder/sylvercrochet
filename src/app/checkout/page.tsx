@@ -20,13 +20,27 @@ const Checkout = () => {
                 CUSTOMER INFORMATION
               </div>
               <div style={{ display: "flex", gap: "20px" }}>
-                <div>
-                  <div>Name</div>
-                  <input />
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "8px",
+                    width: "100%",
+                  }}
+                >
+                  <div className={styles.inputTitle}>Full Name</div>
+                  <input className={styles.inputField} />
                 </div>
-                <div>
-                  <div>Name</div>
-                  <input />
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "8px",
+                    width: "100%",
+                  }}
+                >
+                  <div className={styles.inputTitle}>Email</div>
+                  <input className={styles.inputField} />
                 </div>
               </div>
             </div>
