@@ -46,7 +46,7 @@ const Checkout = () => {
                       width: "100%",
                     }}
                   >
-                    <div className={styles.inputTitle}>Email</div>
+                    <div className={styles.inputTitle}>Contact No.</div>
                     <input className={styles.inputField} />
                   </div>
                 </div>
@@ -58,7 +58,7 @@ const Checkout = () => {
                     width: "100%",
                   }}
                 >
-                  <div className={styles.inputTitle}>City</div>
+                  <div className={styles.inputTitle}>Email</div>
                   <input className={styles.inputField} />
                 </div>
               </div>
@@ -85,7 +85,7 @@ const Checkout = () => {
                     width: "100%",
                   }}
                 >
-                  <div className={styles.inputTitle}>City</div>
+                  <div className={styles.inputTitle}>Street Address</div>
                   <input className={styles.inputField} />
                 </div>
                 <div style={{ display: "flex", gap: "20px" }}>
@@ -129,7 +129,7 @@ const Checkout = () => {
                   width: "100%",
                 }}
               >
-                <div className={styles.inputTitle}>Any Request</div>
+                <div className={styles.inputTitle}>Any Modification</div>
                 <textarea
                   className={styles.inputField}
                   style={{ height: "15vh" }}
@@ -150,6 +150,21 @@ const Checkout = () => {
             <div
               style={{ display: "flex", flexDirection: "column", gap: "12px" }}
             >
+              <div style={{ display: "flex", gap: "12px" }}>
+                <img
+                  src={"/Images/Huntrix.jpg"}
+                  className={styles.productImage}
+                />
+                <div
+                  className={styles.productCategory}
+                  style={{ flexDirection: "column" }}
+                >
+                  <div>Huntrix Full Set</div>
+                  <div>Qty: 1</div>
+                  <div style={{ color: "var(--color-darkPink)" }}>$28.99</div>
+                </div>
+              </div>
+              <div style={{ border: "1px solid var(--color-darkPink)" }}></div>
               <div
                 className={styles.productCategory}
                 style={{ fontSize: "18px", justifyContent: "space-between" }}

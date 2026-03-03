@@ -74,3 +74,11 @@
   color: #999a9b;
   display: flex;
 }
+
+.productImage {
+  border-radius: 20px;
+  width: 60px;
+  object-fit: cover;
+  object-position: bottom;
+  height: 60px;
+}
