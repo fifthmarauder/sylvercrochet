@@ -11,7 +11,7 @@ const Checkout = () => {
 
         <div className={styles.boxContainer}>
           {/* left containers */}
-          <div>
+          <div className={styles.borderBoxContainer}>
             <div className={styles.borderBox}>
               <div
                 className="heading"
@@ -19,17 +19,36 @@ const Checkout = () => {
               >
                 CUSTOMER INFORMATION
               </div>
-              <div style={{ display: "flex", gap: "20px" }}>
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "8px",
-                    width: "100%",
-                  }}
-                >
-                  <div className={styles.inputTitle}>Full Name</div>
-                  <input className={styles.inputField} />
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "16px",
+                }}
+              >
+                <div style={{ display: "flex", gap: "20px" }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "8px",
+                      width: "100%",
+                    }}
+                  >
+                    <div className={styles.inputTitle}>Full Name</div>
+                    <input className={styles.inputField} />
+                  </div>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "8px",
+                      width: "100%",
+                    }}
+                  >
+                    <div className={styles.inputTitle}>Email</div>
+                    <input className={styles.inputField} />
+                  </div>
                 </div>
                 <div
                   style={{
@@ -39,8 +58,59 @@ const Checkout = () => {
                     width: "100%",
                   }}
                 >
-                  <div className={styles.inputTitle}>Email</div>
+                  <div className={styles.inputTitle}>City</div>
                   <input className={styles.inputField} />
+                </div>
+              </div>
+            </div>
+            <div className={styles.borderBox}>
+              <div
+                className="heading"
+                style={{ color: "var(--color-darkPink)", fontSize: "32px" }}
+              >
+                SHIPPING ADDRESS
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "16px",
+                }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "8px",
+                    width: "100%",
+                  }}
+                >
+                  <div className={styles.inputTitle}>City</div>
+                  <input className={styles.inputField} />
+                </div>
+                <div style={{ display: "flex", gap: "20px" }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "8px",
+                      width: "100%",
+                    }}
+                  >
+                    <div className={styles.inputTitle}>City</div>
+                    <input className={styles.inputField} />
+                  </div>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "8px",
+                      width: "100%",
+                    }}
+                  >
+                    <div className={styles.inputTitle}>Zip Code</div>
+                    <input className={styles.inputField} />
+                  </div>
                 </div>
               </div>
             </div>

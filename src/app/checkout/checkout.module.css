@@ -21,10 +21,16 @@
   width: 100%;
 }
 
+.borderBoxContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
 .borderBox {
   display: flex;
   flex-direction: column;
-  width: 45vw;
+  width: 40vw;
   gap: 16px;
   padding: 24px 40px;
   border: 5px solid #edabe188;
@@ -52,8 +58,8 @@
 
 .inputField {
   border: 3px solid #edabe188;
-  font-size: 18px;
-  padding: 5px;
+  font-size: 16px;
+  padding: 12px;
 
   border-radius: 12px;
 }
