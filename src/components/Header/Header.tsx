@@ -4,10 +4,12 @@ import ShoppingBag from "../Icons/ShoppingBag";
 import styles from "./header.module.css";
 import { House, LineSquiggle, Store } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useAppSelector } from "../../../store/hooks";
 
 const Header = () => {
   const router = useRouter();
   const pathName = usePathname();
+  const totalItems = useAppSelector((state) => state.cart.totalItems);
 
   useEffect(() => {
     pathName.startsWith("/shop") ||
@@ -55,8 +57,22 @@ const Header = () => {
             <LineSquiggle /> ABOUT US
           </div>
         </div>
-        <div style={{ width: "175px", justifyContent: "end", display: "flex" }}>
+        <div
+          style={{
+            width: "175px",
+            justifyContent: "end",
+            display: "flex",
+            position: "relative",
+            cursor: "pointer",
+          }}
+          onClick={() => {
+            router.push("/cart");
+          }}
+        >
           <ShoppingBag />
+          {totalItems > 0 && (
+            <div className={styles.cartPosition}>{totalItems}</div>
+          )}
         </div>
       </div>
     </div>

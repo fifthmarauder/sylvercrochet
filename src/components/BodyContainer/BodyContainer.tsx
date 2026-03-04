@@ -9,21 +9,21 @@ import Image from "next/image";
 
 const BodyContainer = () => {
   const router = useRouter();
-  const cardContent = [
-    {
-      label: "MADE WITH LOVE",
-      description:
-        "Each item is carefully handcrafted with attention to detail.",
-    },
-    {
-      label: "PREMIUM QUALITY",
-      description: "We use only the finest, hypoallergic yarns and materials.",
-    },
-    {
-      label: "FAST SHIPPING",
-      description: "Carefully packaged and shipped with love to your door.",
-    },
-  ];
+  // const cardContent = [
+  //   {
+  //     label: "MADE WITH LOVE",
+  //     description:
+  //       "Each item is carefully handcrafted with attention to detail.",
+  //   },
+  //   {
+  //     label: "PREMIUM QUALITY",
+  //     description: "We use only the finest, hypoallergic yarns and materials.",
+  //   },
+  //   {
+  //     label: "FAST SHIPPING",
+  //     description: "Carefully packaged and shipped with love to your door.",
+  //   },
+  // ];
   return (
     <>
       <div className={styles.main}>

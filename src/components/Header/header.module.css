@@ -31,3 +31,19 @@
   object-position: center;
   cursor: pointer;
 }
+
+.cartPosition {
+  position: absolute;
+  top: -8px;
+  right: -5px;
+  background-color: var(--color-darkPink);
+  color: white;
+  border-radius: 24px;
+  width: 22px;
+  height: 22px;
+  font-size: 12px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -4,6 +4,7 @@ import "./globals.css";
 import localFont from "next/font/local";
 import Footer from "@/components/Footer/Footer";
 import { ToastContainer } from "react-toastify";
+import { Providers } from "./provider";
 
 const sofia = localFont({
   src: [
@@ -55,10 +56,12 @@ export default function RootLayout({
       className={` ${sofia.variable}  ${noodle.variable} ${knotNoodle.variable}`}
     >
       <body>
-        <Header />
-        {children}
-        <ToastContainer />
-        <Footer />
+        <Providers>
+          <Header />
+          {children}
+          <ToastContainer />
+          <Footer />
+        </Providers>
       </body>
     </html>
   );
