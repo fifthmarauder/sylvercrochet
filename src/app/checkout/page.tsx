@@ -82,18 +82,18 @@ const Checkout = () => {
         modifications,
       };
 
-      const response = await api.post("/api/orders/create", orderData);
+      const response = await api.post("/api/users/create", orderData);
 
       if (response.data.success) {
         toast.success(
           "Order placed successfully! You will receive confirmation via phone.",
         );
         dispatch(clearCart());
-        setTimeout(() => {
-          router.push(
-            "/order-success?orderNumber=" + response.data.order.orderNumber,
-          );
-        }, 2000);
+        // setTimeout(() => {
+        //   router.push(
+        //     "/order-success?orderNumber=" + response.data.order.orderNumber,
+        //   );
+        // }, 2000);
       }
     } catch (error: any) {
       console.error("Order error:", error);
