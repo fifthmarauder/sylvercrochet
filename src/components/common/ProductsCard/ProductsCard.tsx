@@ -1,6 +1,9 @@
 import { ShoppingCart } from "lucide-react";
 import Button from "../Button/Button";
 import styles from "./productscard.module.css";
+import { useAppDispatch } from "../../../../store/hooks";
+import { toast } from "react-toastify";
+import { addToCart } from "../../../../store/slices/cartSlice";
 
 interface ProductCardProps {
   product: {
@@ -14,6 +17,30 @@ interface ProductCardProps {
   };
 }
 const ProductsCard = ({ product }: ProductCardProps) => {
+  const dispatch = useAppDispatch();
+
+  if (!product) return null;
+
+  const handleAddToCart = () => {
+    if (!product.stock) {
+      toast.error("Product is out of stock");
+      return;
+    }
+
+    dispatch(
+      addToCart({
+        _id: product._id,
+        name: product.name,
+        images: product.images,
+        category: product.category,
+        price: product.price,
+      }),
+    );
+
+    toast.success(
+      `${product.name} added to cart! Keep shopping or visit cart for checkout`,
+    );
+  };
   return (
     <div className={styles.productCard}>
       <img
@@ -29,6 +56,7 @@ const ProductsCard = ({ product }: ProductCardProps) => {
       <div className={styles.priceContainer}>
         <div className={styles.productPrice}>Rs. {product?.price}</div>
         <Button
+          onClick={handleAddToCart}
           text="Add to Cart"
           Icon={ShoppingCart}
           containerStyles={{ fontSize: "18px" }}
