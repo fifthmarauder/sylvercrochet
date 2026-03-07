@@ -24,7 +24,7 @@
 .borderBoxContainer {
   display: flex;
   flex-direction: column;
-  gap: 48px;
+  gap: 36px;
 }
 
 .borderBox {
