@@ -1,12 +1,52 @@
-import { ArrowLeft } from "lucide-react";
+"use client";
+
+import { ArrowLeft, ShoppingBag } from "lucide-react";
 import styles from "./cart.module.css";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import Button from "@/components/common/Button/Button";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
+import { useRouter } from "next/navigation";
+import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 
 const Cart = () => {
+  const router = useRouter();
+  const dispatch = useAppDispatch();
+  const { items, totalItems, totalPrice } = useAppSelector(
+    (state) => state.cart,
+  );
+
+  if (items.length == 0) {
+    return (
+      <div className={styles.main}>
+        <div className={styles.emptyContainer}>
+          <ShoppingBag className={styles.emptyIcon} size={48} />
+          <div
+            className="heading"
+            style={{ color: "var(--color-darkPink)", fontSize: "36px" }}
+          >
+            Y<span style={{ fontFamily: "var(--font-knotnoodle)" }}>O</span>UR C
+            <span style={{ fontFamily: "var(--font-knotnoodle)" }}>A</span>RT{" "}
+            <span style={{ fontFamily: "var(--font-knotnoodle)" }}>I</span>S E
+            <span style={{ fontFamily: "var(--font-knotnoodle)" }}>M</span>PTY
+            ;-;
+          </div>
+          <div className={styles.productCategory}>
+            Start by adding some products in your cart
+          </div>
+          <Button
+            text="Start Shopping"
+            Icon={ShoppingBag}
+            onClick={() => {
+              router.push("/shop");
+            }}
+          />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className={styles.main}>
       <div className={styles.container}>
