@@ -11,17 +11,26 @@ const Header = () => {
   const pathName = usePathname();
   const totalItems = useAppSelector((state) => state.cart.totalItems);
 
-  useEffect(() => {
-    pathName.startsWith("/shop") ||
-    pathName.startsWith("/admin") ||
-    pathName.startsWith("/cart") ||
-    pathName.startsWith("/checkout")
-      ? setBackgroundColor("var(--color-lightPink)")
-      : setBackgroundColor("#f6edda");
-  }, [pathName]);
+  const backgroundColor = ["/shop", "/admin", "/cart", "/checkout"].some(
+    (path) => pathName.startsWith(path),
+  )
+    ? "var(--color-lightPink)"
+    : "#f6edda";
 
-  const [backgroundColor, setBackgroundColor] = useState("#f6edda");
+  const header = [
+    { name: "Home", icon: House, path: "/" },
+    { name: "Shop", icon: Store, path: "/shop" },
+    { name: "About Us", icon: LineSquiggle, path: "/aboutus" },
+  ];
 
+  const getActiveName = () => {
+    if (pathName == "/") return "Home";
+    if (pathName == "/shop") return "Shop";
+    if (pathName == "/admin") return "Admin";
+    return "";
+  };
+
+  const activeName = getActiveName();
   return (
     <div style={{ backgroundColor: backgroundColor }}>
       <div className={styles.main}>
@@ -37,25 +46,20 @@ const Header = () => {
         />
 
         <div className={styles.navbarButtonsContainer}>
-          <div
-            className={styles.navbarButtons}
-            onClick={() => {
-              router.push("/");
-            }}
-          >
-            <House /> HOME
-          </div>
-          <div
-            className={styles.navbarButtons}
-            onClick={() => {
-              router.push("/shop");
-            }}
-          >
-            <Store /> SHOP
-          </div>
-          <div className={styles.navbarButtons}>
-            <LineSquiggle /> ABOUT US
-          </div>
+          {header.map((data) => {
+            const isActive = activeName === data.name;
+            return (
+              <div
+                className={styles.navbarButtons}
+                style={isActive ? { color: "var(--color-darkPink)" } : {}}
+                onClick={() => {
+                  router.push(data.path);
+                }}
+              >
+                <data.icon /> {data.name.toUpperCase()}
+              </div>
+            );
+          })}
         </div>
         <div
           style={{
