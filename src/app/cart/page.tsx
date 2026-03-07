@@ -9,6 +9,11 @@ import Button from "@/components/common/Button/Button";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
 import { useRouter } from "next/navigation";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
+import {
+  decrementQuantity,
+  incrementQuantity,
+  removeFromCart,
+} from "../../../store/slices/cartSlice";
 
 const Cart = () => {
   const router = useRouter();
@@ -63,18 +68,17 @@ const Cart = () => {
         </div>
         <div className={styles.productsContainer}>
           <div className={styles.products}>
-            {[1, 2, 3].map(() => {
+            {items.map((item, index) => {
               return (
                 <>
-                  <div className={styles.product}>
+                  <div className={styles.product} key={item._id}>
                     <div className={styles.productLeft}>
-                      <img
-                        src={"/Images/Huntrix.jpg"}
-                        className={styles.productImage}
-                      />
+                      <img src={item.images} className={styles.productImage} />
                       <div className={styles.productDetails}>
-                        <div className={styles.productName}>Huntrix set</div>
-                        <div className={styles.productCategory}>Category</div>
+                        <div className={styles.productName}>{item.name}</div>
+                        <div className={styles.productCategory}>
+                          {item.category}
+                        </div>
                         <div className={styles.actionButtons}>
                           <AddIcon
                             sx={{
@@ -83,13 +87,20 @@ const Cart = () => {
                               borderRadius: "999px",
                               padding: "6px",
                             }}
+                            onClick={() => {
+                              dispatch(incrementQuantity(item._id));
+                            }}
                           />
+                          <span>{item.quantity}</span>
                           <RemoveIcon
                             sx={{
                               color: "var(--color-darkPink)",
                               backgroundColor: "var(--color-lightPink)",
                               borderRadius: "999px",
                               padding: "6px",
+                            }}
+                            onClick={() => {
+                              dispatch(decrementQuantity(item._id));
                             }}
                           />
                         </div>
@@ -102,10 +113,13 @@ const Cart = () => {
                           fontSize: "28px",
                         }}
                         style={{ display: "flex", alignSelf: "end" }}
+                        onClick={() => {
+                          dispatch(removeFromCart(item._id));
+                        }}
                       />
                       <div>
                         <div className={styles.productCategory}>
-                          $28.99 each
+                          Rs. {item.price} each
                         </div>
                         <div
                           style={{
@@ -115,14 +129,16 @@ const Cart = () => {
                             textAlign: "right",
                           }}
                         >
-                          28.99
+                          {item.price * item.quantity}
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div
-                    style={{ border: "1px solid rgba(240, 240, 240, 1)" }}
-                  ></div>
+                  {index < items.length - 1 && (
+                    <div
+                      style={{ border: "1px solid rgba(240, 240, 240, 1)" }}
+                    ></div>
+                  )}
                 </>
               );
             })}
@@ -143,15 +159,15 @@ const Cart = () => {
                 className={styles.productCategory}
                 style={{ fontSize: "18px", justifyContent: "space-between" }}
               >
-                <div>Sub Total(1 items)</div>
-                <div>$28.99</div>
+                <div>Sub Total({totalItems} items)</div>
+                <div>Rs. {totalPrice}</div>
               </div>
               <div
                 className={styles.productCategory}
                 style={{ fontSize: "18px", justifyContent: "space-between" }}
               >
                 <div>Shipping</div>
-                <div>Free</div>
+                <div>-</div>
               </div>
             </div>
             <div style={{ border: "1px solid var(--color-darkPink)" }}></div>
@@ -176,13 +192,16 @@ const Cart = () => {
                   textAlign: "right",
                 }}
               >
-                28.99
+                {totalPrice}
               </div>
             </div>
             <Button
               text="Proceed to checkout"
               Icon={CreditCardIcon}
               containerStyles={{ display: "flex", justifyContent: "center" }}
+              onClick={() => {
+                router.push("/checkout");
+              }}
             />
           </div>
         </div>
