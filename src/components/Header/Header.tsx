@@ -3,7 +3,6 @@ import { usePathname, useRouter } from "next/navigation";
 import ShoppingBag from "../Icons/ShoppingBag";
 import styles from "./header.module.css";
 import { House, LineSquiggle, Store } from "lucide-react";
-import { useEffect, useState } from "react";
 import { useAppSelector } from "../../../store/hooks";
 
 const Header = () => {

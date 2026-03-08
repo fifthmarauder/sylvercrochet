@@ -9,6 +9,7 @@ import {
   Pen,
   Plus,
   Trash2,
+  Upload,
 } from "lucide-react";
 import Wave from "@/components/common/Wave";
 import { Close, Inventory } from "@mui/icons-material";
@@ -34,6 +35,9 @@ const Admin = () => {
     inventoryValue: 0,
   });
   const [products, setProducts] = useState([]);
+  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [imagePreview, setImagePreview] = useState<string>("");
+  const [isUploading, setIsUploading] = useState(false);
 
   useEffect(() => {
     fetchStats();
@@ -59,6 +63,60 @@ const Admin = () => {
     setImages("");
     setIsEditMode(false);
     setEditingProductId(null);
+    setImageFile(null);
+    setImagePreview("");
+  };
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const allowedTypes = ["image/jpeg", "image/jpg", "image/png", "image/webp"];
+    if (!allowedTypes.includes(file.type)) {
+      toast.error("Please upload only image files (JPEG, PNG, WEBP)");
+      return;
+    }
+    if (file.size > 5 * 1024 * 1024) {
+      toast.error("Image size must be less than 5MB");
+      return;
+    }
+
+    setImageFile(file);
+
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setImagePreview(reader.result as string);
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const uploadImageToServer = async (): Promise<string> => {
+    if (!imageFile) {
+      throw new Error("No image file selected");
+    }
+
+    const formData = new FormData();
+    formData.append("image", imageFile);
+
+    try {
+      setIsUploading(true);
+      const response = await api.post("/api/users/image", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      if (response.data.success) {
+        return response.data.url;
+      } else {
+        throw new Error("Upload failed");
+      }
+    } catch (error: any) {
+      console.error("Image upload error:", error);
+      throw new Error("Failed to upload image");
+    } finally {
+      setIsUploading(false);
+    }
   };
   const fetchProducts = async () => {
     try {
@@ -70,11 +128,25 @@ const Admin = () => {
   };
 
   const handleAddProduct = async () => {
-    if (!name || !category || !description || !price || !images) {
+    if (!name || !category || !description || !price) {
       toast.error("Please fill all required fields");
       return;
     }
+    if (!isEditMode && !imageFile) {
+      toast.error("Please upload a product image");
+      return;
+    }
+
+    if (isEditMode && !imageFile && !images) {
+      toast.error("Please upload a product image");
+      return;
+    }
     try {
+      let imageUrl = images;
+
+      if (imageFile) {
+        imageUrl = await uploadImageToServer();
+      }
       if (isEditMode && editingProductId) {
         await api.put(`/api/users/updateProduct/${editingProductId}`, {
           name,
@@ -83,7 +155,7 @@ const Admin = () => {
           price: Number(price),
           isFeatured,
           stock,
-          images,
+          images: imageUrl,
         });
         toast.success("Product updated successfully");
       } else {
@@ -94,7 +166,7 @@ const Admin = () => {
           price,
           isFeatured,
           stock,
-          images,
+          images: imageUrl,
         });
         toast.success("Added successfully");
       }
@@ -118,6 +190,7 @@ const Admin = () => {
     setIsEditMode(true);
     setEditingProductId(product._id);
     setOpenDrawer(true);
+    setImagePreview(product.images);
   };
 
   const handleDelete = async (productId: string) => {
@@ -367,6 +440,7 @@ const Admin = () => {
                       <option value="true">Yes</option>
                     </select>
                   </div>
+
                   <div
                     style={{
                       display: "flex",
@@ -375,14 +449,45 @@ const Admin = () => {
                       gap: "8px",
                     }}
                   >
-                    <div className={styles.inputTitle}>Image Url *</div>
+                    <div className={styles.inputTitle}>Image Upload *</div>
+
                     <input
-                      className={styles.inputLine}
-                      value={images}
-                      onChange={(e) => {
-                        setImages(e.target.value);
-                      }}
+                      type="file"
+                      accept="image/jpeg,image/jpg,image/png,image/webp"
+                      onChange={handleImageChange}
+                      id="image-upload"
+                      style={{ display: "none" }}
                     />
+
+                    <label
+                      htmlFor="image-upload"
+                      style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "12px",
+                        padding: "16px 64px",
+                        backgroundColor: "var(--color-lightPink)",
+                        color: "var(--color-darkPink)",
+                        borderRadius: "8px",
+                        cursor: "pointer",
+                        fontWeight: "600",
+                        width: "fit-content",
+                        transition: "all 0.2s",
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.backgroundColor =
+                          "var(--color-darkPink)";
+                        e.currentTarget.style.color = "white";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.backgroundColor =
+                          "var(--color-lightPink)";
+                        e.currentTarget.style.color = "var(--color-darkPink)";
+                      }}
+                    >
+                      <Upload size={20} />
+                      {imageFile ? imageFile.name : "Choose Image"}
+                    </label>
                   </div>
                 </div>
               </div>
