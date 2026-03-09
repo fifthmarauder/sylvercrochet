@@ -76,23 +76,22 @@ const FeaturedProducts = () => {
           />
           <div className={styles.exploreShopContainer}>
             <div className={styles.exploreHeading}>
-              ST<span style={{ fontFamily: "var(--font-knotnoodle)" }}>A</span>
-              RT YO
-              <span style={{ fontFamily: "var(--font-knotnoodle)" }}>U</span>R
-              CR<span style={{ fontFamily: "var(--font-knotnoodle)" }}>O</span>
-              CHET JOURN
-              <span style={{ fontFamily: "var(--font-knotnoodle)" }}>E</span>Y T
-              <span style={{ fontFamily: "var(--font-knotnoodle)" }}>O</span>DAY
+              CUST<span style={{ fontFamily: "var(--font-knotnoodle)" }}></span>
+              M ORD
+              <span style={{ fontFamily: "var(--font-knotnoodle)" }}>E</span>RS
+              N<span style={{ fontFamily: "var(--font-knotnoodle)" }}>O</span>W{" "}
+              <span style={{ fontFamily: "var(--font-knotnoodle)" }}>A</span>
+              VAILABLE
             </div>
             <div className={styles.para}>
-              Whether you're looking for a unique gift or treating yourself, our
-              handmade crochet items bring warmth and joy to any space
+              Cannot find what you're looking for? Place an order now to get
+              your own unique custom crochet item.
             </div>
             <Button
-              text="Explore Our Shop"
+              text="Custom Orders"
               Icon={Heart}
               onClick={() => {
-                router.push("/shop");
+                router.push("/custom-order");
               }}
             />
           </div>
