@@ -13,12 +13,13 @@ import {
 } from "lucide-react";
 import Wave from "@/components/common/Wave";
 import { Close, Inventory } from "@mui/icons-material";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
 import { api } from "../api";
 import { Categories } from "@/components/common/categories";
 
 const Admin = () => {
+  const EditProductRef = useRef<HTMLDivElement | null>(null);
   const [openDrawer, setOpenDrawer] = useState(false);
   const [isEditMode, setIsEditMode] = useState(false);
   const [editingProductId, setEditingProductId] = useState<string | null>(null);
@@ -38,6 +39,17 @@ const Admin = () => {
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string>("");
   const [isUploading, setIsUploading] = useState(false);
+
+  useEffect(() => {
+    if (openDrawer && EditProductRef.current) {
+      setTimeout(() => {
+        EditProductRef.current?.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }, 100);
+    }
+  }, [openDrawer]);
 
   useEffect(() => {
     fetchStats();
@@ -281,7 +293,7 @@ const Admin = () => {
             })}
           </div>
           {openDrawer && (
-            <div className={styles.addProductContainer}>
+            <div className={styles.addProductContainer} ref={EditProductRef}>
               <div
                 className="heading"
                 style={{
@@ -498,7 +510,6 @@ const Admin = () => {
                   containerStyles={{ width: "fit-content" }}
                   onClick={() => {
                     handleAddProduct();
-                    console.log(stock);
                   }}
                 />
                 <Button
