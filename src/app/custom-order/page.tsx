@@ -130,7 +130,7 @@ const CustomOrder = () => {
         referenceImages: imageUrls,
       };
 
-      const response = await api.post("/api/users/create", orderData);
+      const response = await api.post("/api/users/createCustom", orderData);
 
       if (response.data.success) {
         toast.success(
@@ -155,7 +155,8 @@ const CustomOrder = () => {
         <div className="heading" style={{ color: "var(--color-darkPink)" }}>
           CUST<span style={{ fontFamily: "var(--font-knotnoodle)" }}>O</span>M
           ORD
-          <span style={{ fontFamily: "var(--font-knotnoodle)" }}>E</span>R
+          <span style={{ fontFamily: "var(--font-knotnoodle)" }}>E</span>R FOR
+          <span style={{ fontFamily: "var(--font-knotnoodle)" }}>M</span>
         </div>
         <div className={styles.borderBoxContainer}>
           <div className={styles.borderBox}>
