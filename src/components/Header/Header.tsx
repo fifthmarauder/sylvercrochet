@@ -45,10 +45,11 @@ const Header = () => {
         />
 
         <div className={styles.navbarButtonsContainer}>
-          {header.map((data) => {
+          {header.map((data, index) => {
             const isActive = activeName === data.name;
             return (
               <div
+                key={index}
                 className={styles.navbarButtons}
                 style={isActive ? { color: "var(--color-darkPink)" } : {}}
                 onClick={() => {
