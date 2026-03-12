@@ -1,0 +1,63 @@
+.main {
+  background-color: var(--color-lightPink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 64px 4px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  max-width: 1280px;
+  align-items: center;
+  gap: 48px;
+}
+
+.para {
+  text-align: center;
+  font-size: 24px;
+  color: #566563;
+  max-width: 600px;
+}
+
+.firstContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+
+.infoContainer {
+  display: flex;
+  flex-direction: column;
+
+  gap: 8px;
+  border: 5px solid #e5aeda88;
+  background-color: white;
+  border-radius: 24px;
+  padding: 24px 128px;
+}
+
+.rules {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.ruleNumber {
+  padding: 4px 10px;
+  border-radius: 99px;
+}
+
+.ballPitContainer {
+  display: flex;
+  flex-direction: column;
+
+  gap: 8px;
+  border: 5px solid #e5aeda88;
+  background-color: white;
+  border-radius: 24px;
+  padding: 48px 24px;
+  height: 400px;
+}
