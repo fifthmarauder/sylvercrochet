@@ -137,7 +137,9 @@ const CustomOrder = () => {
           "Custom order request submitted! We'll email you a quote soon.",
         );
         setTimeout(() => {
-          router.push("/");
+          router.push(
+            "/order-success?orderNumber=" + response.data.order.orderNumber,
+          );
         }, 2000);
       }
     } catch (error: any) {

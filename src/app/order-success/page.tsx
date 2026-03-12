@@ -2,12 +2,16 @@
 import { Box, Sparkle } from "lucide-react";
 import styles from "./order.module.css";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
-// import Ballpit from "@/components/Ballpit";
+
 import dynamic from "next/dynamic";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const Ballpit = dynamic(() => import("@/components/Ballpit"), { ssr: false });
 
 const OrderSuccess = () => {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const orderNumber = searchParams.get("orderNumber");
   const rules = [
     {
       number: "1",
@@ -64,7 +68,9 @@ const OrderSuccess = () => {
           <div className={styles.para}>Thankyou for your purchase! 🎉</div>
           <div className={styles.para} style={{ fontSize: "18px" }}>
             Your order number is:{" "}
-            <span style={{ color: "var(--color-darkPink)" }}>8w73y48</span>
+            <span style={{ color: "var(--color-darkPink)" }}>
+              {orderNumber}
+            </span>
           </div>
         </div>
 

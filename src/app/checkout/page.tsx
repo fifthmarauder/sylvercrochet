@@ -89,11 +89,11 @@ const Checkout = () => {
           "Order placed successfully! You will receive confirmation via phone.",
         );
         dispatch(clearCart());
-        // setTimeout(() => {
-        //   router.push(
-        //     "/order-success?orderNumber=" + response.data.order.orderNumber,
-        //   );
-        // }, 2000);
+        setTimeout(() => {
+          router.push(
+            "/order-success?orderNumber=" + response.data.order.orderNumber,
+          );
+        }, 2000);
       }
     } catch (error: any) {
       console.error("Order error:", error);
