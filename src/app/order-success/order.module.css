@@ -61,3 +61,8 @@
   padding: 48px 24px;
   height: 400px;
 }
+
+.buttonContainer {
+  display: flex;
+  gap: 24px;
+}

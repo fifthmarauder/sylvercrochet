@@ -1,10 +1,11 @@
 "use client";
-import { Box, Sparkle } from "lucide-react";
+import { Box, House, Sparkle } from "lucide-react";
 import styles from "./order.module.css";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
 
 import dynamic from "next/dynamic";
 import { useRouter, useSearchParams } from "next/navigation";
+import Button from "@/components/common/Button/Button";
 
 const Ballpit = dynamic(() => import("@/components/Ballpit"), { ssr: false });
 
@@ -141,6 +142,23 @@ const OrderSuccess = () => {
               colors={["#e83c91", "#ffe9ed", "#6699cb"]}
             />
           </div>
+        </div>
+        <div className={styles.buttonContainer}>
+          <Button
+            Icon={House}
+            text="Back to Home"
+            onClick={() => {
+              router.push("/");
+            }}
+          />
+          <Button
+            Icon={Box}
+            text="Continue Shopping"
+            containerStyles={{ backgroundColor: "var(--color-blue)" }}
+            onClick={() => {
+              router.push("/shop");
+            }}
+          />
         </div>
       </div>
     </div>
