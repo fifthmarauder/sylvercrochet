@@ -76,8 +76,9 @@ const FeaturedProducts = () => {
           />
           <div className={styles.exploreShopContainer}>
             <div className={styles.exploreHeading}>
-              CUST<span style={{ fontFamily: "var(--font-knotnoodle)" }}></span>
-              M ORD
+              CUST
+              <span style={{ fontFamily: "var(--font-knotnoodle)" }}>O</span>M
+              ORD
               <span style={{ fontFamily: "var(--font-knotnoodle)" }}>E</span>RS
               N<span style={{ fontFamily: "var(--font-knotnoodle)" }}>O</span>W{" "}
               <span style={{ fontFamily: "var(--font-knotnoodle)" }}>A</span>
