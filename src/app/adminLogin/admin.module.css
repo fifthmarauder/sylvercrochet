@@ -29,6 +29,7 @@
   font-size: 16px;
   color: #999a9b;
   display: flex;
+  margin-top: -24px;
 }
 
 .inputTitle {

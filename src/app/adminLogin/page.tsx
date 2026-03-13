@@ -20,7 +20,7 @@ const page = () => {
           <span style={{ fontFamily: "var(--font-knotnoodle)" }}>A</span>DMIN L
           <span style={{ fontFamily: "var(--font-knotnoodle)" }}>O</span>GIN
         </div>
-        <div className={styles.productCategory} style={{ marginTop: "-18px" }}>
+        <div className={styles.productCategory}>
           Sign in to manage your crochet shop
         </div>
 
