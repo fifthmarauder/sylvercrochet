@@ -5,6 +5,7 @@ import {
   Box,
   BoxIcon,
   DollarSign,
+  LogOut,
   Package,
   Pen,
   Plus,
@@ -17,9 +18,11 @@ import { useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
 import { api } from "../api";
 import { Categories } from "@/components/common/categories";
+import { useRouter } from "next/navigation";
 
 const Admin = () => {
   const EditProductRef = useRef<HTMLDivElement | null>(null);
+  const router = useRouter();
   const [openDrawer, setOpenDrawer] = useState(false);
   const [isEditMode, setIsEditMode] = useState(false);
   const [editingProductId, setEditingProductId] = useState<string | null>(null);
@@ -55,6 +58,13 @@ const Admin = () => {
     fetchStats();
     fetchProducts();
   }, []);
+
+  useEffect(() => {
+    const token = localStorage.getItem("adminToken");
+    if (!token) {
+      router.push("/adminLogin");
+    }
+  }, [router]);
 
   const fetchStats = async () => {
     try {
@@ -259,14 +269,27 @@ const Admin = () => {
               SHBO
               <span style={{ fontFamily: "var(--font-knotnoodle)" }}>A</span>RD
             </div>
-            <Button
-              text="Add New Product "
-              Icon={Plus}
-              onClick={() => {
-                clearForm();
-                setOpenDrawer(true);
-              }}
-            />
+
+            <div style={{ display: "flex", gap: "12px" }}>
+              <Button
+                text="Logout "
+                Icon={LogOut}
+                containerStyles={{ backgroundColor: "gray" }}
+                onClick={() => {
+                  localStorage.removeItem("adminToken");
+                  toast.success("Logged out successfully");
+                  router.push("/adminLogin");
+                }}
+              />
+              <Button
+                text="Add New Product "
+                Icon={Plus}
+                onClick={() => {
+                  clearForm();
+                  setOpenDrawer(true);
+                }}
+              />
+            </div>
           </div>
           <div className={styles.cardContainer}>
             {cardDetails.map((data, index) => {
