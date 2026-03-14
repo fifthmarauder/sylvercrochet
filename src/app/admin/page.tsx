@@ -62,7 +62,7 @@ const Admin = () => {
   useEffect(() => {
     const token = localStorage.getItem("adminToken");
     if (!token) {
-      router.push("/adminLogin");
+      router.push("/admin-login");
     }
   }, [router]);
 
@@ -278,7 +278,7 @@ const Admin = () => {
                 onClick={() => {
                   localStorage.removeItem("adminToken");
                   toast.success("Logged out successfully");
-                  router.push("/adminLogin");
+                  router.push("/admin-login");
                 }}
               />
               <Button

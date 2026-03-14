@@ -56,7 +56,7 @@ const BodyContainer = () => {
               text="Admin Panel"
               containerStyles={{ backgroundColor: "var(--color-blue)" }}
               onClick={() => {
-                router.push("/admin");
+                router.push("/admin-login");
               }}
             />
           </div>
