@@ -57,10 +57,10 @@ export default function RootLayout({
     >
       <body>
         <Providers>
-          <Header />
+          {/* <Header /> */}
           {children}
           <ToastContainer />
-          <Footer />
+          {/* <Footer /> */}
         </Providers>
       </body>
     </html>

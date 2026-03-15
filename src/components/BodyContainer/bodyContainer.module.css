@@ -57,8 +57,12 @@
   color: var(--color-darkPink);
 }
 
+.heading {
+  text-align: start;
+}
+
 .para {
-  text-align: center;
+  text-align: start;
   font-size: 18px;
   color: #566563;
   max-width: 768px;
@@ -99,4 +103,31 @@
   text-align: center;
   font-size: 16px;
   color: #566563;
+}
+
+@media only screen and (max-width: 768px) {
+  .spiderverseImage {
+    display: none;
+  }
+
+  .main {
+    padding: 64px 24px;
+    justify-content: center;
+  }
+  .introContainer {
+    max-width: 100%;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .heading {
+    text-align: center;
+    font-size: 36px;
+    line-height: 48px;
+  }
+
+  .para {
+    text-align: center;
+  }
 }

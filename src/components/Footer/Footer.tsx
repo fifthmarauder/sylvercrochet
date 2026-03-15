@@ -1,9 +1,12 @@
+"use client";
 import styles from "./footer.module.css";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import PinterestIcon from "@mui/icons-material/Pinterest";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
+import { useRouter } from "next/navigation";
 
 const Footer = () => {
+  const router = useRouter();
   return (
     <div className={styles.main}>
       <div className={styles.container}>
@@ -31,13 +34,28 @@ const Footer = () => {
         <div className={styles.rightContainer}>
           <div className={styles.contactContainer}>
             <div className={styles.contact}>Contact Us</div>
-            <div className={styles.contact}>About Us</div>
+            <div
+              className={styles.contact}
+              onClick={() => {
+                router.push("/about-us");
+              }}
+            >
+              About Us
+            </div>
             <div className={styles.contact}>FAQ</div>
           </div>
           <div className={styles.contactContainer}>
-            <div className={styles.contact}>Contact Us</div>
-            <div className={styles.contact}>About Us</div>
-            <div className={styles.contact}>FAQ</div>
+            <div
+              className={styles.contact}
+              onClick={() => {
+                router.push("/career");
+              }}
+            >
+              Careers
+            </div>
+
+            {/* <div className={styles.contact}>FAQ</div> */}
+            <div className={styles.contact}>Custom Order</div>
           </div>
         </div>
       </div>

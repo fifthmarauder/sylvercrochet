@@ -5,7 +5,7 @@ const page = () => {
   return (
     <div>
       <BodyContainer />
-      <FeaturedProducts />
+      {/* <FeaturedProducts /> */}
     </div>
   );
 };

@@ -25,7 +25,7 @@ const BodyContainer = () => {
           <div className={styles.headingPills}>
             <Sparkles /> Handmade with Love
           </div>
-          <div className="heading" style={{ textAlign: "start" }}>
+          <div className={`${styles.heading} heading`}>
             DISC
             <span style={{ fontFamily: "var(--font-knotnoodle)" }}>O</span>VER
             ADOR
@@ -38,7 +38,7 @@ const BodyContainer = () => {
             <span style={{ fontFamily: "var(--font-knotnoodle)" }}>U</span>
             RES
           </div>
-          <div className={styles.para} style={{ textAlign: "start" }}>
+          <div className={styles.para}>
             Every stitch tells a story! Expplore our collection of lovingly
             handcrafter crochet items, from cuddly plushies to cozy blankets.
             Each piece is made with care and premium materials.
