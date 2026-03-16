@@ -56,12 +56,14 @@ const Shop = () => {
       {" "}
       <div className={styles.main}>
         <div className={styles.container}>
-          <div className="heading" style={{ color: "var(--color-darkPink)" }}>
+          <div
+            className={`heading ${styles.heading}`}
+            style={{ color: "var(--color-darkPink)" }}
+          >
             O<span style={{ fontFamily: "var(--font-knotnoodle)" }}>U</span>R
             CROC
-            <span style={{ fontFamily: "var(--font-knotnoodle)" }}>H</span>ET C
-            <span style={{ fontFamily: "var(--font-knotnoodle)" }}>O</span>LL
-            <span style={{ fontFamily: "var(--font-knotnoodle)" }}>E</span>CTION
+            <span style={{ fontFamily: "var(--font-knotnoodle)" }}>H</span>ET SH
+            <span style={{ fontFamily: "var(--font-knotnoodle)" }}>O</span>P
           </div>
           <div className={styles.para}>
             Browse our complete collection of handmade crochet treasures. Each

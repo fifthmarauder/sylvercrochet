@@ -72,4 +72,50 @@ input::placeholder {
   display: flex;
   gap: 32px;
   flex-wrap: wrap;
+  justify-content: center;
+}
+
+@media only screen and (max-width: 1280px) {
+  .pillsContainer {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .pills {
+    font-size: 14px;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .main {
+    padding: 64px 12px;
+  }
+  .heading {
+    font-size: 36px;
+    line-height: 48px;
+  }
+
+  .container {
+    max-width: 100vw;
+  }
+  .para {
+    font-size: 16px;
+    max-width: 100vw;
+  }
+
+  .pillsContainer {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .searchBoxContainer {
+    margin-top: 24px;
+  }
+
+  .pills {
+    font-size: 14px;
+  }
+
+  .productContainer {
+    flex-direction: column;
+  }
 }
