@@ -16,6 +16,7 @@ const Footer = () => {
             alt="Logo"
             width={175}
             height={70}
+            className={styles.image}
           />
           <div className={styles.contact}>@sylvercrochet</div>
           <div
@@ -54,8 +55,8 @@ const Footer = () => {
               Careers
             </div>
 
-            {/* <div className={styles.contact}>FAQ</div> */}
             <div className={styles.contact}>Custom Order</div>
+            <div className={styles.contact}>Delivery & Returns</div>
           </div>
         </div>
       </div>

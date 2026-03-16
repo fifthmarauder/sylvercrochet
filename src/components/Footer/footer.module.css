@@ -8,10 +8,11 @@
 
 .container {
   display: flex;
-  width: 1280px;
+  width: 100%;
   align-items: center;
   justify-content: space-between;
   gap: 40px;
+  padding: 0px 100px;
 }
 
 .leftContainer {
@@ -46,4 +47,26 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
+}
+
+@media only screen and (max-width: 768px) {
+  .container {
+    flex-direction: column-reverse;
+    padding: 24px;
+  }
+
+  .leftContainer {
+    align-items: start;
+    width: 100%;
+  }
+
+  .rightContainer {
+    flex-direction: column;
+    align-items: start;
+    width: 100%;
+  }
+
+  .image {
+    margin-left: -20px;
+  }
 }
