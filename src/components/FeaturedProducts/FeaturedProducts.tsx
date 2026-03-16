@@ -30,7 +30,10 @@ const FeaturedProducts = () => {
       <div className={styles.main}>
         <div className={styles.container}>
           <div className={styles.intro}>
-            <div className="heading" style={{ color: "var(--color-darkPink)" }}>
+            <div
+              className={`${styles.heading} heading`}
+              style={{ color: "var(--color-darkPink)" }}
+            >
               FEAT
               <span style={{ fontFamily: "var(--font-knotnoodle" }}>U</span>RED
               PR<span style={{ fontFamily: "var(--font-knotnoodle" }}>O</span>
@@ -44,7 +47,7 @@ const FeaturedProducts = () => {
             {product.length > 0 ? (
               product.map((data, index) => {
                 return (
-                  <div key={index} className={styles.productCard}>
+                  <div key={index}>
                     <ProductsCard product={data} />
                   </div>
                 );
@@ -53,7 +56,7 @@ const FeaturedProducts = () => {
               <div
                 style={{
                   textAlign: "center",
-                  padding: "40px",
+
                   width: "100%",
                   color: "var(--color-darkPink)",
                 }}
