@@ -28,7 +28,7 @@ const Cart = () => {
         <div className={styles.emptyContainer}>
           <ShoppingBag className={styles.emptyIcon} size={48} />
           <div
-            className="heading"
+            className={`${styles.heading} heading`}
             style={{ color: "var(--color-darkPink)", fontSize: "36px" }}
           >
             Y<span style={{ fontFamily: "var(--font-knotnoodle)" }}>O</span>UR C
@@ -60,7 +60,7 @@ const Cart = () => {
           Continue Shopping
         </div>
         <div
-          className="heading"
+          className={`${styles.heading} heading`}
           style={{ color: "var(--color-darkPink)", alignSelf: "self-start " }}
         >
           SH<span style={{ fontFamily: "var(--font-knotnoodle)" }}>O</span>PPING
@@ -106,18 +106,19 @@ const Cart = () => {
                         </div>
                       </div>
                     </div>
+
                     <div className={styles.productRight}>
                       <DeleteOutlineOutlinedIcon
                         sx={{
                           color: "var(--color-darkPink)",
                           fontSize: "28px",
                         }}
-                        style={{ display: "flex", alignSelf: "end" }}
+                        className={styles.trashIcon}
                         onClick={() => {
                           dispatch(removeFromCart(item._id));
                         }}
                       />
-                      <div>
+                      <div className={styles.productPricing}>
                         <div className={styles.productCategory}>
                           Rs. {item.price} each
                         </div>
@@ -129,7 +130,7 @@ const Cart = () => {
                             textAlign: "right",
                           }}
                         >
-                          {item.price * item.quantity}
+                          Rs. {item.price * item.quantity}
                         </div>
                       </div>
                     </div>
@@ -192,7 +193,7 @@ const Cart = () => {
                   textAlign: "right",
                 }}
               >
-                {totalPrice}
+                Rs. {totalPrice}
               </div>
             </div>
             <Button
