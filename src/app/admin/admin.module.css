@@ -80,6 +80,26 @@
   box-shadow: 0px 6px 10px -6px rgba(0, 0, 0, 0.7);
 }
 
+.imageUploadLabel {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px 64px;
+  background-color: var(--color-lightPink);
+  color: var(--color-darkPink);
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  width: fit-content;
+  transition: all 0.2s;
+}
+
+.imageUploadLabel:hover {
+  background-color: var(--color-darkPink);
+  color: white;
+}
+
 .oneRow {
   display: flex;
   gap: 16px;
@@ -156,6 +176,65 @@
 
 .inputTitle {
   font-size: 18px;
+}
+@media only screen and (max-width: 1280px) {
+  .main {
+    padding: 64px 12px;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 12px;
+    box-sizing: border-box;
+  }
+
+  .headingContainer {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .heading {
+    font-size: 36px;
+    line-height: 48px;
+    text-align: center;
+  }
+
+  .reverseButtons {
+    flex-direction: row-reverse;
+  }
+
+  .cardContainer {
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+  }
+
+  .productContainer {
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-x: auto;
+  }
+
+  .addProductContainer {
+    padding: 30px;
+    align-items: center;
+  }
+  .table,
+  .tableContent {
+    grid-template-columns: 120px 200px 1fr 150px 150px;
+    min-width: min-content;
+  }
+
+  .imageUploadLabel {
+    padding: 20px 10px;
+    width: 150px;
+  }
 }
 
 @media only screen and (max-width: 768px) {

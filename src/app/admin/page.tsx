@@ -501,19 +501,7 @@ const Admin = () => {
 
                     <label
                       htmlFor="image-upload"
-                      style={{
-                        display: "inline-flex",
-                        alignItems: "center",
-                        gap: "12px",
-                        padding: "16px 64px",
-                        backgroundColor: "var(--color-lightPink)",
-                        color: "var(--color-darkPink)",
-                        borderRadius: "8px",
-                        cursor: "pointer",
-                        fontWeight: "600",
-                        width: "fit-content",
-                        transition: "all 0.2s",
-                      }}
+                      className={styles.imageUploadLabel}
                       onMouseEnter={(e) => {
                         e.currentTarget.style.backgroundColor =
                           "var(--color-darkPink)";
@@ -525,8 +513,8 @@ const Admin = () => {
                         e.currentTarget.style.color = "var(--color-darkPink)";
                       }}
                     >
-                      <Upload size={20} />
-                      {imageFile ? imageFile.name : "Choose Image"}
+                      <Upload size={18} />
+                      {imageFile ? imageFile.name : "Upload Image"}
                     </label>
                   </div>
                 </div>
