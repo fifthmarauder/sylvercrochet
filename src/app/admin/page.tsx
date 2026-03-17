@@ -262,7 +262,10 @@ const Admin = () => {
       <div className={styles.main}>
         <div className={styles.container}>
           <div className={styles.headingContainer}>
-            <div className="heading" style={{ color: "var(--color-darkPink)" }}>
+            <div
+              className={`heading ${styles.heading}`}
+              style={{ color: "var(--color-darkPink)" }}
+            >
               AD<span style={{ fontFamily: "var(--font-knotnoodle)" }}>M</span>
               IN D
               <span style={{ fontFamily: "var(--font-knotnoodle)" }}>A</span>
@@ -270,7 +273,10 @@ const Admin = () => {
               <span style={{ fontFamily: "var(--font-knotnoodle)" }}>A</span>RD
             </div>
 
-            <div style={{ display: "flex", gap: "12px" }}>
+            <div
+              style={{ display: "flex", gap: "12px" }}
+              className={styles.reverseButtons}
+            >
               <Button
                 text="Logout "
                 Icon={LogOut}
@@ -318,11 +324,10 @@ const Admin = () => {
           {openDrawer && (
             <div className={styles.addProductContainer} ref={EditProductRef}>
               <div
-                className="heading"
+                className={`heading ${styles.heading}`}
                 style={{
                   color: "var(--color-darkPink)",
                   fontSize: "32px",
-                  textAlign: "start",
                 }}
               >
                 {isEditMode ? (
@@ -354,7 +359,7 @@ const Admin = () => {
                 )}
               </div>
               <div className={styles.inputField}>
-                <div style={{ display: "flex", gap: "16px" }}>
+                <div className={styles.oneRow}>
                   <div
                     style={{
                       display: "flex",
@@ -404,7 +409,7 @@ const Admin = () => {
                     display: "flex",
                     flexDirection: "column",
                     width: "100%",
-                    gap: "8px",
+                    gap: "16px",
                   }}
                 >
                   <div className={styles.inputTitle}>Description *</div>
@@ -417,7 +422,7 @@ const Admin = () => {
                     }}
                   />
                 </div>
-                <div style={{ display: "flex", gap: "16px" }}>
+                <div className={styles.oneRow}>
                   <div
                     style={{
                       display: "flex",
@@ -526,7 +531,7 @@ const Admin = () => {
                   </div>
                 </div>
               </div>
-              <div style={{ display: "flex", gap: "8px" }}>
+              <div className={styles.oneRow}>
                 <Button
                   text={isEditMode ? "Update Product" : "Add Product"}
                   Icon={Box}
@@ -551,11 +556,10 @@ const Admin = () => {
           )}
           <div className={styles.productContainer}>
             <div
-              className="heading"
+              className={`heading ${styles.heading}`}
               style={{
                 color: "var(--color-darkPink)",
                 fontSize: "32px",
-                textAlign: "start",
               }}
             >
               <span style={{ fontFamily: "var(--font-knotnoodle)" }}>A</span>LL
@@ -563,23 +567,28 @@ const Admin = () => {
               <span style={{ fontFamily: "var(--font-knotnoodle)" }}>O</span>
               DUCTS
             </div>
+
             <div className={styles.table}>
-              <div style={{ width: "100px" }}>Image</div>
-              <div style={{ width: "180px" }}>Name</div>
-              <div style={{ width: "100px" }}>Category</div>
-              <div style={{ width: "100px" }}>Price </div>
-              <div style={{ width: "100px" }}>Action</div>
+              <div>Image</div>
+              <div>Name</div>
+              <div>Category</div>
+              <div>Price </div>
+              <div>Action</div>
             </div>
 
             <div
-              style={{ borderBottom: "3px solid var(--color-primary)" }}
+              className={styles.table}
+              style={{
+                borderBottom: "3px solid var(--color-primary)",
+                padding: "0 10px",
+              }}
             ></div>
             {products.length > 0 ? (
               products.map((data: any, index) => {
                 return (
-                  <div key={index}>
+                  <div key={index} style={{ width: "100%" }}>
                     <div className={styles.tableContent}>
-                      <div style={{ width: "100px" }}>
+                      <div>
                         <img
                           src={data.images}
                           // {product.images || "/Images/placeholder.jpg"}
@@ -587,26 +596,20 @@ const Admin = () => {
                           className={styles.productImage}
                         />
                       </div>
-                      <div
-                        style={{ width: "180px" }}
-                        className={styles.productName}
-                      >
-                        {data.name}
-                      </div>
-                      <div style={{ width: "100px" }}>
-                        <div className={styles.productType}>
+                      <div className={styles.productName}>{data.name}</div>
+                      <div>
+                        <div
+                          className={styles.productType}
+                          style={{ minWidth: "80px", textAlign: "center" }}
+                        >
                           {data.category}
                         </div>
                       </div>
-                      <div
-                        style={{ width: "100px" }}
-                        className={styles.productPrice}
-                      >
+                      <div className={styles.productPrice}>
                         Rs. {data.price}
                       </div>
                       <div
                         style={{
-                          width: "100px",
                           display: "flex",
                           gap: "12px",
                         }}
@@ -630,7 +633,11 @@ const Admin = () => {
                       </div>
                     </div>
                     <div
-                      style={{ border: "1px solid rgba(240, 240, 240, 1)" }}
+                      className={styles.table}
+                      style={{
+                        borderBottom: "1px solid rgba(240, 240, 240, 1)",
+                        padding: "0 10px",
+                      }}
                     ></div>
                   </div>
                 );
@@ -646,6 +653,7 @@ const Admin = () => {
           </div>
         </div>
       </div>
+
       <div style={{ backgroundColor: "var(--color-surfaceBlack)" }}>
         <Wave color="var(--color-lightPink)" />
       </div>
