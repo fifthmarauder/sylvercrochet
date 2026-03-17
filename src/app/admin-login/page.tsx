@@ -54,7 +54,14 @@ const page = () => {
           Sign in to manage your crochet shop
         </div>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "12px",
+            justifyContent: "center",
+          }}
+        >
           <div
             style={{
               display: "flex",
