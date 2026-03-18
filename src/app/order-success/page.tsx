@@ -58,7 +58,10 @@ const OrderSuccess = () => {
               },
             }}
           />
-          <div className="heading" style={{ color: "var(--color-darkPink)" }}>
+          <div
+            className={`${styles.heading} heading`}
+            style={{ color: "var(--color-darkPink)" }}
+          >
             ORD<span style={{ fontFamily: "var(--font-knotnoodle)" }}>E</span>R
             PL
             <span style={{ fontFamily: "var(--font-knotnoodle)" }}>A</span>CED
@@ -77,7 +80,7 @@ const OrderSuccess = () => {
 
         <div className={styles.infoContainer}>
           <div
-            className="heading"
+            className={`${styles.heading} heading`}
             style={{
               fontSize: "32px",
               color: "var(--color-darkPink)",
@@ -126,9 +129,8 @@ const OrderSuccess = () => {
           </div>
 
           <div
+            className={styles.ballPit}
             style={{
-              width: "700px",
-              height: "400px",
               position: "relative",
               borderRadius: "99px",
             }}
@@ -147,6 +149,9 @@ const OrderSuccess = () => {
           <Button
             Icon={House}
             text="Back to Home"
+            containerStyles={{
+              justifyContent: "center",
+            }}
             onClick={() => {
               router.push("/");
             }}
@@ -154,7 +159,10 @@ const OrderSuccess = () => {
           <Button
             Icon={Box}
             text="Continue Shopping"
-            containerStyles={{ backgroundColor: "var(--color-blue)" }}
+            containerStyles={{
+              backgroundColor: "var(--color-blue)",
+              justifyContent: "center",
+            }}
             onClick={() => {
               router.push("/shop");
             }}
