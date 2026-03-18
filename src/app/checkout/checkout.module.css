@@ -82,3 +82,44 @@
   object-position: bottom;
   height: 60px;
 }
+
+.verticalInputBoxes {
+  display: flex;
+  gap: 20px;
+}
+
+@media only screen and (max-width: 1120px) {
+  .main {
+    padding: 64px 12px;
+  }
+  .heading {
+    text-align: center;
+    font-size: 36px;
+    line-height: 48px;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .boxContainer {
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    gap: 28px;
+  }
+
+  .borderBox {
+    width: 70vw;
+  }
+
+  .verticalInputBoxes {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .checkoutContainer {
+    width: 70vw;
+  }
+}
