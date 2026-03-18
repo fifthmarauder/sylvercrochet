@@ -154,7 +154,10 @@ const CustomOrder = () => {
   return (
     <div className={styles.main}>
       <div className={styles.container}>
-        <div className="heading" style={{ color: "var(--color-darkPink)" }}>
+        <div
+          className={`${styles.heading} heading`}
+          style={{ color: "var(--color-darkPink)" }}
+        >
           CUST<span style={{ fontFamily: "var(--font-knotnoodle)" }}>O</span>M
           ORD
           <span style={{ fontFamily: "var(--font-knotnoodle)" }}>E</span>R FOR
@@ -175,7 +178,7 @@ const CustomOrder = () => {
                 gap: "16px",
               }}
             >
-              <div style={{ display: "flex", gap: "20px" }}>
+              <div className={styles.verticalInputBoxes}>
                 <div
                   style={{
                     display: "flex",
@@ -253,7 +256,7 @@ const CustomOrder = () => {
                   onChange={(e) => setStreetAddress(e.target.value)}
                 />
               </div>
-              <div style={{ display: "flex", gap: "20px" }}>
+              <div className={styles.verticalInputBoxes}>
                 <div
                   style={{
                     display: "flex",

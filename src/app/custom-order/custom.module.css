@@ -90,3 +90,36 @@
   cursor: pointer;
   font-size: 18px;
 }
+
+.verticalInputBoxes {
+  display: flex;
+  gap: 20px;
+}
+
+@media only screen and (max-width: 768px) {
+  .main {
+    padding: 64px 18px;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 100%;
+  }
+  .heading {
+    text-align: center;
+    font-size: 36px;
+    line-height: 48px;
+  }
+
+  .para {
+    font-size: 16px;
+  }
+
+  .borderBox {
+    width: 70vw;
+  }
+  .verticalInputBoxes {
+    flex-direction: column;
+    gap: 16px;
+  }
+}
