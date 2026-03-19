@@ -5,6 +5,7 @@ import localFont from "next/font/local";
 import Footer from "@/components/Footer/Footer";
 import { ToastContainer } from "react-toastify";
 import { Providers } from "./provider";
+import { Metadata } from "next";
 
 const sofia = localFont({
   src: [
@@ -44,6 +45,26 @@ const knotNoodle = localFont({
   variable: "--font-knotnoodle",
   display: "swap",
 });
+
+export const metadata: Metadata = {
+  title: "Sylver Crochet",
+  description: "Handmade Crochet Products",
+  icons: {
+    icon: [
+      { url: "/Images/favicon.ico" },
+      { url: "/Images/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/Images/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+    ],
+    apple: [
+      {
+        url: "/Images/apple-touch-icon.png",
+        sizes: "180x180",
+        type: "image/png",
+      },
+    ],
+  },
+  manifest: "/Images/site.webmanifest",
+};
 
 export default function RootLayout({
   children,

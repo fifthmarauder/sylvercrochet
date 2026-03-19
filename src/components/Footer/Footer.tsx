@@ -23,13 +23,23 @@ const Footer = () => {
             className={styles.contact}
             style={{ display: "flex", gap: "8px" }}
           >
-            <InstagramIcon sx={{ fontSize: "40px" }} />{" "}
-            <PinterestIcon sx={{ fontSize: "40px" }} />
-            <WhatsAppIcon sx={{ fontSize: "40px" }} />
+            <InstagramIcon
+              sx={{ fontSize: "40px", cursor: "pointer" }}
+              onClick={() => {
+                window.open("https://www.instagram.com/sylvercrochet/");
+              }}
+            />
+            <PinterestIcon
+              sx={{ fontSize: "40px", cursor: "pointer" }}
+              onClick={() => {
+                window.open("https://www.pinterest.com/silvermystx/_created/");
+              }}
+            />
+            <WhatsAppIcon sx={{ fontSize: "40px", cursor: "pointer" }} />
           </div>
           <div className={styles.copyright}>
             <div>©2024 SylverCrochet</div>
-            <div>Mail us at sarah@gmail.com</div>
+            <div>Mail us at sylvercrochet@gmail.com </div>
           </div>
         </div>
         <div className={styles.rightContainer}>
@@ -55,7 +65,14 @@ const Footer = () => {
               Careers
             </div>
 
-            <div className={styles.contact}>Custom Order</div>
+            <div
+              className={styles.contact}
+              onClick={() => {
+                router.push("/custom-order");
+              }}
+            >
+              Custom Order
+            </div>
             <div className={styles.contact}>Delivery & Returns</div>
           </div>
         </div>
