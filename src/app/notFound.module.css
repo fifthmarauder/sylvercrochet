@@ -4,6 +4,7 @@
   align-items: center;
   justify-content: center;
   padding: 64px 4px;
+  min-height: calc(100vh - 500px);
 }
 
 .container {
@@ -18,4 +19,19 @@
   text-align: center;
   font-size: 18px;
   color: #566563;
+}
+
+@media only screen and (max-width: 1280px) {
+  .main {
+    min-height: calc(100vh - 500px);
+  }
+  .heading {
+    text-align: center;
+    font-size: 36px;
+    line-height: 48px;
+  }
+
+  .para {
+    font-size: 16px;
+  }
 }

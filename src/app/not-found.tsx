@@ -27,10 +27,16 @@ const NotFound = () => {
             },
           }}
         />
-        <div className="heading" style={{ color: "var(--color-darkPink)" }}>
+        <div
+          className={`${styles.heading} heading`}
+          style={{ color: "var(--color-darkPink)" }}
+        >
           404
         </div>
-        <div className="heading" style={{ color: "var(--color-darkPink)" }}>
+        <div
+          className={`${styles.heading} heading`}
+          style={{ color: "var(--color-darkPink)" }}
+        >
           OOPS! PAGE NOT FOUND
         </div>
         <div className={styles.para}>
