@@ -39,9 +39,9 @@ const BodyContainer = () => {
             RES
           </div>
           <div className={styles.para}>
-            Every stitch tells a story! Expplore our collection of lovingly
-            handcrafter crochet items, from cuddly plushies to cozy blankets.
-            Each piece is made with care and premium materials.
+            Every stitch tells a story! Explore our collection of loving crochet
+            items of anime & game characters, plushies and cute keychains. Each
+            amigurami is handmade with love and care.
           </div>
           <div className={styles.buttonContainer}>
             <Button

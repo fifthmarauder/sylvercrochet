@@ -2,7 +2,7 @@
 import styles from "./footer.module.css";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import PinterestIcon from "@mui/icons-material/Pinterest";
-import WhatsAppIcon from "@mui/icons-material/WhatsApp";
+import MailIcon from "@mui/icons-material/Mail";
 import { useRouter } from "next/navigation";
 
 const Footer = () => {
@@ -35,7 +35,13 @@ const Footer = () => {
                 window.open("https://www.pinterest.com/silvermystx/_created/");
               }}
             />
-            <WhatsAppIcon sx={{ fontSize: "40px", cursor: "pointer" }} />
+            <MailIcon
+              sx={{ fontSize: "40px", cursor: "pointer" }}
+              onClick={() => {
+                window.location.href =
+                  "mailto:sylvercrochet@gmail.com?subject=Hello&body=Hi there";
+              }}
+            />
           </div>
           <div className={styles.copyright}>
             <div>©2024 SylverCrochet</div>
