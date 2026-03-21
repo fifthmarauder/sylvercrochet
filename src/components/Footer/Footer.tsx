@@ -50,7 +50,15 @@ const Footer = () => {
         </div>
         <div className={styles.rightContainer}>
           <div className={styles.contactContainer}>
-            <div className={styles.contact}>Contact Us</div>
+            <div
+              className={styles.contact}
+              onClick={() => {
+                window.location.href =
+                  "mailto:sylvercrochet@gmail.com?subject=Hello&body=Hi there";
+              }}
+            >
+              Contact Us
+            </div>
             <div
               className={styles.contact}
               onClick={() => {
