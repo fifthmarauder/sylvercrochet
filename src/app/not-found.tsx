@@ -31,7 +31,7 @@ const NotFound = () => {
           className={`${styles.heading} heading`}
           style={{ color: "var(--color-darkPink)" }}
         >
-          404
+          404 :(
         </div>
         <div
           className={`${styles.heading} heading`}
