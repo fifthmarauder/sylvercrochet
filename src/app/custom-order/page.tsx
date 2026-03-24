@@ -33,7 +33,36 @@ const CustomOrder = () => {
     const validFiles: File[] = [];
     const newPreviews: string[] = [];
 
-    files.forEach((file) => {
+    // files.forEach((file) => {
+    //   const allowedTypes = [
+    //     "image/jpeg",
+    //     "image/jpg",
+    //     "image/png",
+    //     "image/webp",
+    //   ];
+    //   if (!allowedTypes.includes(file.type)) {
+    //     toast.error(`${file.name} is not a valid image format`);
+    //     return;
+    //   }
+    //   if (file.size > 5 * 1024 * 1024) {
+    //     toast.error(`${file.name} is too large. Max 5MB per image.`);
+    //     return;
+    //   }
+
+    //   validFiles.push(file);
+
+    //   const reader = new FileReader();
+    //   reader.onloadend = () => {
+    //     newPreviews.push(reader.result as string);
+    //     if (newPreviews.length === validFiles.length) {
+    //       setImagePreviews((prev) => [...prev, ...newPreviews]);
+    //     }
+    //   };
+    //   reader.readAsDataURL(file);
+    // });
+
+    for (const file of files) {
+      // ✅ return works properly here
       const allowedTypes = [
         "image/jpeg",
         "image/jpg",
@@ -42,11 +71,11 @@ const CustomOrder = () => {
       ];
       if (!allowedTypes.includes(file.type)) {
         toast.error(`${file.name} is not a valid image format`);
-        return;
+        continue; // skip invalid, keep processing rest
       }
       if (file.size > 5 * 1024 * 1024) {
         toast.error(`${file.name} is too large. Max 5MB per image.`);
-        return;
+        continue;
       }
 
       validFiles.push(file);
@@ -59,8 +88,7 @@ const CustomOrder = () => {
         }
       };
       reader.readAsDataURL(file);
-    });
-
+    }
     setImageFiles((prev) => [...prev, ...validFiles]);
   };
 
