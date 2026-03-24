@@ -281,6 +281,7 @@ const Checkout = () => {
               Icon={Box}
               containerStyles={{ justifyContent: "center" }}
               onClick={handleSubmit}
+              disabled={isSubmitting}
             />
           </div>
 

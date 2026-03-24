@@ -6,18 +6,24 @@ const Button = ({
   containerStyles,
   buttonStyles,
   onClick,
+  disabled,
 }: {
   text: string;
   Icon: any;
   containerStyles?: React.CSSProperties;
   buttonStyles?: React.CSSProperties;
   onClick?: () => void;
+  disabled?: boolean;
 }) => {
   return (
     <div
-      style={containerStyles}
+      style={{
+        ...containerStyles,
+        opacity: disabled ? 0.6 : 1,
+        cursor: disabled ? "not-allowed" : "pointer",
+      }}
       className={styles.buttonContainer}
-      onClick={onClick}
+      onClick={disabled ? undefined : onClick}
     >
       <Icon style={buttonStyles} />
       {text}

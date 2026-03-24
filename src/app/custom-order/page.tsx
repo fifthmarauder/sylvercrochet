@@ -69,29 +69,44 @@ const CustomOrder = () => {
     setImagePreviews((prev) => prev.filter((_, i) => i !== index));
   };
 
-  const uploadImages = async (): Promise<string[]> => {
-    const uploadedUrls: string[] = [];
+  // const uploadImages = async (): Promise<string[]> => {
+  //   const uploadedUrls: string[] = [];
 
-    for (const file of imageFiles) {
+  //   for (const file of imageFiles) {
+  //     const formData = new FormData();
+  //     formData.append("image", file);
+
+  //     try {
+  //       const response = await api.post("/api/users/image", formData, {
+  //         headers: { "Content-Type": "multipart/form-data" },
+  //       });
+
+  //       if (response.data.success) {
+  //         uploadedUrls.push(response.data.url);
+  //       }
+  //     } catch (error) {
+  //       throw new Error(`Failed to upload ${file.name}`);
+  //     }
+  //   }
+
+  //   return uploadedUrls;
+  // };
+
+  const uploadImages = async (): Promise<string[]> => {
+    const uploadPromises = imageFiles.map(async (file) => {
       const formData = new FormData();
       formData.append("image", file);
 
-      try {
-        const response = await api.post("/api/users/image", formData, {
-          headers: { "Content-Type": "multipart/form-data" },
-        });
+      const response = await api.post("/api/users/image", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
 
-        if (response.data.success) {
-          uploadedUrls.push(response.data.url);
-        }
-      } catch (error) {
-        throw new Error(`Failed to upload ${file.name}`);
-      }
-    }
+      if (response.data.success) return response.data.url;
+      throw new Error(`Failed to upload ${file.name}`);
+    });
 
-    return uploadedUrls;
+    return Promise.all(uploadPromises);
   };
-
   const handleSubmit = async () => {
     if (
       !fullName ||
@@ -411,6 +426,7 @@ const CustomOrder = () => {
             Icon={Box}
             containerStyles={{ justifyContent: "center" }}
             onClick={handleSubmit}
+            disabled={isSubmitting}
           />
         </div>
       </div>
