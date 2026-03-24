@@ -2,7 +2,6 @@
 import { Box, House, Sparkle } from "lucide-react";
 import styles from "./order.module.css";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
-
 import dynamic from "next/dynamic";
 import { useRouter, useSearchParams } from "next/navigation";
 import Button from "@/components/common/Button/Button";
