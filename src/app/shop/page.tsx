@@ -15,6 +15,7 @@ const Shop = () => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     fetchProducts();
@@ -26,11 +27,13 @@ const Shop = () => {
 
   const fetchProducts = async () => {
     try {
+      setLoading(true);
       const response = await api.get("/api/users/adminProducts");
       setProducts(response.data);
-      console.log("Products fetched");
     } catch (error: any) {
       toast.error("Failed to fetch products");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -109,14 +112,16 @@ const Shop = () => {
             })}
           </div>
           <div className={styles.productContainer}>
-            {filteredProducts.length > 0 ? (
-              filteredProducts.map((data: any) => {
-                return (
-                  <div key={data._id}>
-                    <ProductsCard product={data} />
-                  </div>
-                );
-              })
+            {loading ? (
+              <div className={styles.loaderContainer}>
+                <div className={styles.loader} />
+              </div>
+            ) : filteredProducts.length > 0 ? (
+              filteredProducts.map((data: any) => (
+                <div key={data._id}>
+                  <ProductsCard product={data} />
+                </div>
+              ))
             ) : (
               <div
                 style={{

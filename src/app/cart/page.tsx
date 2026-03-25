@@ -55,7 +55,12 @@ const Cart = () => {
   return (
     <div className={styles.main}>
       <div className={styles.container}>
-        <div className={styles.backButton}>
+        <div
+          className={styles.backButton}
+          onClick={() => {
+            router.push("/shop");
+          }}
+        >
           <ArrowLeft />
           Continue Shopping
         </div>
