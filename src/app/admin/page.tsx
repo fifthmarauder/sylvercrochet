@@ -39,9 +39,11 @@ const Admin = () => {
     inventoryValue: 0,
   });
   const [products, setProducts] = useState([]);
-  const [imageFile, setImageFile] = useState<File | null>(null);
-  const [imagePreview, setImagePreview] = useState<string>("");
   const [isUploading, setIsUploading] = useState(false);
+
+  const [imageFile, setImageFile] = useState<File[]>([]);
+  const [imagePreview, setImagePreview] = useState<string[]>([]);
+  const [existingImages, setExistingImages] = useState<string[]>([]);
 
   useEffect(() => {
     if (openDrawer && EditProductRef.current) {
@@ -82,64 +84,73 @@ const Admin = () => {
     setPrice("");
     setStock(true);
     setIsFeatured(false);
-    setImages("");
     setIsEditMode(false);
     setEditingProductId(null);
-    setImageFile(null);
-    setImagePreview("");
+    setImageFile([]);
+    setImagePreview([]);
+    setExistingImages([]);
   };
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
+    const files = Array.from(e.target.files || []);
+    if (!files.length) return;
 
     const allowedTypes = ["image/jpeg", "image/jpg", "image/png", "image/webp"];
-    if (!allowedTypes.includes(file.type)) {
-      toast.error("Please upload only image files (JPEG, PNG, WEBP)");
-      return;
+    const totalAfterAdd =
+      imageFile.length + existingImages.length + files.length;
+    for (const file of files) {
+      if (!allowedTypes.includes(file.type)) {
+        toast.error("Please upload only image files (JPEG, PNG, WEBP)");
+        return;
+      }
+      if (file.size > 5 * 1024 * 1024) {
+        toast.error("Image size must be less than 5MB");
+        return;
+      }
     }
-    if (file.size > 5 * 1024 * 1024) {
-      toast.error("Image size must be less than 5MB");
+
+    if (totalAfterAdd > 3) {
+      toast.error("Maximum 3 images per product");
       return;
     }
 
-    setImageFile(file);
+    setImageFile((prev) => [...prev, ...files]);
 
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setImagePreview(reader.result as string);
-    };
-    reader.readAsDataURL(file);
+    files.forEach((file) => {
+      const reader = new FileReader();
+      reader.onloadend = () =>
+        setImagePreview((prev) => [...prev, reader.result as string]);
+      reader.readAsDataURL(file);
+    });
   };
 
-  const uploadImageToServer = async (): Promise<string> => {
-    if (!imageFile) {
-      throw new Error("No image file selected");
-    }
+  const removeNewImage = (index: number) => {
+    setImageFile((prev) => prev.filter((_, i) => i !== index));
+    setImagePreview((prev) => prev.filter((_, i) => i !== index));
+  };
+
+  const removeExistingImage = (index: number) => {
+    setExistingImages((prev) => prev.filter((_, i) => i !== index));
+  };
+
+  const uploadImagesToServer = async (): Promise<string[]> => {
+    if (!imageFile.length) return [];
 
     const formData = new FormData();
-    formData.append("image", imageFile);
+    imageFile.forEach((file) => formData.append("images", file));
 
+    setIsUploading(true);
     try {
-      setIsUploading(true);
       const response = await api.post("/api/users/image", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
+        headers: { "Content-Type": "multipart/form-data" },
       });
-
-      if (response.data.success) {
-        return response.data.url;
-      } else {
-        throw new Error("Upload failed");
-      }
-    } catch (error: any) {
-      console.error("Image upload error:", error);
-      throw new Error("Failed to upload image");
+      if (response.data.success) return response.data.urls;
+      throw new Error("Upload failed");
     } finally {
       setIsUploading(false);
     }
   };
+
   const fetchProducts = async () => {
     try {
       const response = await api.get("/api/users/adminProducts");
@@ -163,12 +174,17 @@ const Admin = () => {
       toast.error("Please upload a product image");
       return;
     }
-    try {
-      let imageUrl = images;
+    const totalImages = existingImages.length + imageFile.length;
 
-      if (imageFile) {
-        imageUrl = await uploadImageToServer();
-      }
+    if (totalImages === 0) {
+      toast.error("Please upload at least one product image");
+      return;
+    }
+
+    try {
+      const newUrls = imageFile.length ? await uploadImagesToServer() : [];
+      const allImages = [...existingImages, ...newUrls];
+
       if (isEditMode && editingProductId) {
         await api.put(`/api/users/updateProduct/${editingProductId}`, {
           name,
@@ -177,7 +193,7 @@ const Admin = () => {
           price: Number(price),
           isFeatured,
           stock,
-          images: imageUrl,
+          images: allImages,
         });
         toast.success("Product updated successfully");
       } else {
@@ -188,10 +204,11 @@ const Admin = () => {
           price,
           isFeatured,
           stock,
-          images: imageUrl,
+          images: allImages,
         });
         toast.success("Added successfully");
       }
+
       setOpenDrawer(false);
       clearForm();
       fetchStats();
@@ -207,12 +224,15 @@ const Admin = () => {
     setDescription(product.description);
     setPrice(product.price.toString());
     setStock(Boolean(product.stock));
-    setImages(product.images);
+    setExistingImages(
+      Array.isArray(product.images) ? product.images : [product.images],
+    );
+    setImageFile([]);
+    setImagePreview([]);
     setIsFeatured(product.isFeatured || false);
     setIsEditMode(true);
     setEditingProductId(product._id);
     setOpenDrawer(true);
-    setImagePreview(product.images);
   };
 
   const handleDelete = async (productId: string) => {
@@ -489,33 +509,112 @@ const Admin = () => {
                       gap: "8px",
                     }}
                   >
-                    <div className={styles.inputTitle}>Image Upload *</div>
+                    <div className={styles.inputTitle}>
+                      Image *(1 required, up to 3)
+                    </div>
 
-                    <input
-                      type="file"
-                      accept="image/jpeg,image/jpg,image/png,image/webp"
-                      onChange={handleImageChange}
-                      id="image-upload"
-                      style={{ display: "none" }}
-                    />
-
-                    <label
-                      htmlFor="image-upload"
-                      className={styles.imageUploadLabel}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.backgroundColor =
-                          "var(--color-darkPink)";
-                        e.currentTarget.style.color = "white";
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.backgroundColor =
-                          "var(--color-lightPink)";
-                        e.currentTarget.style.color = "var(--color-darkPink)";
-                      }}
+                    <div
+                      style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}
                     >
-                      <Upload size={18} />
-                      {imageFile ? imageFile.name : "Upload Image"}
-                    </label>
+                      {existingImages.map((url, i) => (
+                        <div key={`ex-${i}`} style={{ position: "relative" }}>
+                          <img
+                            src={url}
+                            style={{
+                              width: 64,
+                              height: 64,
+                              objectFit: "cover",
+                              borderRadius: 8,
+                            }}
+                          />
+                          <button
+                            onClick={() => removeExistingImage(i)}
+                            style={{
+                              position: "absolute",
+                              top: -6,
+                              right: -6,
+                              background: "red",
+                              border: "none",
+                              borderRadius: "50%",
+                              width: 20,
+                              height: 20,
+                              cursor: "pointer",
+                              color: "white",
+                              fontSize: 12,
+                              lineHeight: "20px",
+                              textAlign: "center",
+                            }}
+                          >
+                            ×
+                          </button>
+                        </div>
+                      ))}
+                      {imagePreview.map((src, i) => (
+                        <div key={`new-${i}`} style={{ position: "relative" }}>
+                          <img
+                            src={src}
+                            style={{
+                              width: 64,
+                              height: 64,
+                              objectFit: "cover",
+                              borderRadius: 8,
+                            }}
+                          />
+                          <button
+                            onClick={() => removeNewImage(i)}
+                            style={{
+                              position: "absolute",
+                              top: -6,
+                              right: -6,
+                              background: "red",
+                              border: "none",
+                              borderRadius: "50%",
+                              width: 20,
+                              height: 20,
+                              cursor: "pointer",
+                              color: "white",
+                              fontSize: 12,
+                              lineHeight: "20px",
+                              textAlign: "center",
+                            }}
+                          >
+                            ×
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Only show upload button if under 3 total */}
+                    {existingImages.length + imageFile.length < 3 && (
+                      <>
+                        <input
+                          type="file"
+                          accept="image/jpeg,image/jpg,image/png,image/webp"
+                          onChange={handleImageChange}
+                          id="image-upload"
+                          multiple
+                          style={{ display: "none" }}
+                        />
+                        <label
+                          htmlFor="image-upload"
+                          className={styles.imageUploadLabel}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.backgroundColor =
+                              "var(--color-darkPink)";
+                            e.currentTarget.style.color = "white";
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.backgroundColor =
+                              "var(--color-lightPink)";
+                            e.currentTarget.style.color =
+                              "var(--color-darkPink)";
+                          }}
+                        >
+                          <Upload size={18} />
+                          {`Add Image (${existingImages.length + imageFile.length}/3)`}
+                        </label>
+                      </>
+                    )}
                   </div>
                 </div>
               </div>
@@ -578,7 +677,11 @@ const Admin = () => {
                     <div className={styles.tableContent}>
                       <div>
                         <img
-                          src={data.images}
+                          src={
+                            Array.isArray(data.images)
+                              ? data.images[0]
+                              : data.images
+                          }
                           // {product.images || "/Images/placeholder.jpg"}
                           alt="Product"
                           className={styles.productImage}
