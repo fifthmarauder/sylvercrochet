@@ -119,3 +119,31 @@
     font-size: 16px;
   }
 }
+
+@media only screen and (max-width: 400px) {
+  .spiderverseImage {
+    display: none;
+  }
+
+  .main {
+    padding: 64px 24px;
+    justify-content: center;
+  }
+  .introContainer {
+    max-width: 100%;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .heading {
+    text-align: center;
+    font-size: 30px;
+    line-height: 30px;
+  }
+
+  .para {
+    text-align: center;
+    font-size: 14px;
+  }
+}

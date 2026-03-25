@@ -123,3 +123,32 @@
     gap: 16px;
   }
 }
+
+@media only screen and (max-width: 400px) {
+  .main {
+    padding: 64px 18px;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 100%;
+  }
+  .heading {
+    text-align: center;
+    font-size: 30px;
+    line-height: 30px;
+  }
+
+  .para {
+    text-align: center;
+    font-size: 14px;
+  }
+
+  .borderBox {
+    width: 70vw;
+  }
+  .verticalInputBoxes {
+    flex-direction: column;
+    gap: 16px;
+  }
+}

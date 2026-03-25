@@ -60,3 +60,9 @@
   color: var(--color-darkPink);
   font-size: 18px;
 }
+
+@media only screen and (max-width: 400px) {
+  .productCard {
+    width: 300px;
+  }
+}

@@ -296,3 +296,134 @@
     width: 100%;
   }
 }
+
+@media only screen and (max-width: 400px) {
+  .main {
+    padding: 64px 12px;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 12px;
+    box-sizing: border-box;
+  }
+
+  .headingContainer {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .heading {
+    text-align: center;
+    font-size: 30px;
+    line-height: 30px;
+  }
+
+  .reverseButtons {
+    flex-direction: row-reverse;
+  }
+
+  .cardContainer {
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+  }
+
+  .productContainer {
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-x: auto;
+  }
+
+  .addProductContainer {
+    padding: 20px 10px;
+    align-items: center;
+  }
+  .table,
+  .tableContent {
+    grid-template-columns: 120px 200px 1fr 150px 150px;
+    min-width: min-content;
+  }
+
+  .oneRow {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .card {
+    width: 250px;
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  .main {
+    padding: 64px 12px;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 12px;
+    box-sizing: border-box;
+  }
+
+  .headingContainer {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+  .heading {
+    text-align: center;
+    font-size: 30px;
+    line-height: 30px;
+  }
+
+  .para {
+    text-align: center;
+    font-size: 14px;
+  }
+  .reverseButtons {
+    flex-direction: row-reverse;
+  }
+
+  .cardContainer {
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+  }
+
+  .productContainer {
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow-x: auto;
+  }
+
+  .addProductContainer {
+    padding: 20px 10px;
+    align-items: center;
+  }
+  .table,
+  .tableContent {
+    grid-template-columns: 120px 200px 1fr 150px 150px;
+    min-width: min-content;
+  }
+
+  .oneRow {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .card {
+    width: 200px;
+  }
+}

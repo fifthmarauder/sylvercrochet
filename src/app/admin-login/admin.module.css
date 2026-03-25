@@ -80,3 +80,24 @@
     width: 50vw;
   }
 }
+
+@media only screen and (max-width: 768px) {
+  .main {
+    padding: 64px 12px;
+  }
+
+  .heading {
+    text-align: center;
+    font-size: 30px;
+    line-height: 30px;
+  }
+
+  .para {
+    text-align: center;
+    font-size: 14px;
+  }
+
+  .inputField {
+    width: 60vw;
+  }
+}

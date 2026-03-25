@@ -99,7 +99,7 @@ const page = () => {
         <Button
           text={isLoading ? "Signing In..." : "Sign In"}
           Icon={DoorOpen}
-          containerStyles={{ width: "20vw", justifyContent: "center" }}
+          containerStyles={{ justifyContent: "center" }}
           onClick={() => {
             handleClick();
           }}

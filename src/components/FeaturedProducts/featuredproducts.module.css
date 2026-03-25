@@ -96,3 +96,34 @@
     line-height: 40px;
   }
 }
+
+@media only screen and (max-width: 400px) {
+  .main {
+    padding: 64px 24px;
+    justify-content: center;
+  }
+
+  .heading {
+    text-align: center;
+    font-size: 30px;
+    line-height: 30px;
+  }
+
+  .para {
+    text-align: center;
+    font-size: 14px;
+  }
+
+  .productContainer {
+    flex-direction: column;
+  }
+
+  .exploreShopContainer {
+    padding: 24px;
+  }
+
+  .exploreHeading {
+    font-size: 28px;
+    line-height: 30px;
+  }
+}
