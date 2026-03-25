@@ -626,6 +626,7 @@ const Admin = () => {
                   onClick={() => {
                     handleAddProduct();
                   }}
+                  disabled={isUploading}
                 />
                 <Button
                   text="Cancel"
