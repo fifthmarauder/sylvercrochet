@@ -87,6 +87,17 @@
   cursor: pointer;
   font-size: 18px;
 }
+.headerShell {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: transform 0.25s ease;
+  will-change: transform;
+}
+
+.headerShell.hidden {
+  transform: translateY(-100%);
+}
 
 @media only screen and (max-width: 1000px) {
   .main {

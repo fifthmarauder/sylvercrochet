@@ -5,13 +5,43 @@ import styles from "./header.module.css";
 import { House, LineSquiggle, Store } from "lucide-react";
 import { useAppSelector } from "../../../store/hooks";
 import { Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const Header = () => {
   const router = useRouter();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
+  const lastScrollY = useRef(0);
   const pathName = usePathname();
   const totalItems = useAppSelector((state) => state.cart.totalItems);
+
+  useEffect(() => {
+    lastScrollY.current = window.scrollY;
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (menuOpen || currentScrollY <= 8) {
+        setIsHeaderVisible(true);
+        lastScrollY.current = currentScrollY;
+        return;
+      }
+
+      if (currentScrollY < lastScrollY.current - 4) {
+        setIsHeaderVisible(true);
+      } else if (currentScrollY > lastScrollY.current + 4) {
+        setIsHeaderVisible(false);
+      }
+
+      lastScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [menuOpen]);
 
   const backgroundColor = ["/shop", "/admin", "/cart", "/checkout"].some(
     (path) => pathName.startsWith(path),
@@ -35,7 +65,10 @@ const Header = () => {
 
   const activeName = getActiveName();
   return (
-    <div style={{ backgroundColor: backgroundColor }}>
+    <div
+      className={`${styles.headerShell} ${!isHeaderVisible ? styles.hidden : ""}`}
+      style={{ backgroundColor: backgroundColor }}
+    >
       <div className={`${styles.main} ${menuOpen ? styles.open : ""}`}>
         <img
           src={"/Images/LogoNoBackground.png"}
