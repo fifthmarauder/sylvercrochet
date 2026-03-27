@@ -12,6 +12,7 @@ import { toast } from "react-toastify";
 const FeaturedProducts = () => {
   const router = useRouter();
   const [product, setProduct] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     fetchProducts();
@@ -19,10 +20,13 @@ const FeaturedProducts = () => {
 
   const fetchProducts = async () => {
     try {
+      setLoading(true);
       const response = await api.get("/api/users/featured");
       setProduct(response.data);
     } catch (error: any) {
       toast.error("Failed to fetch products");
+    } finally {
+      setLoading(false);
     }
   };
   return (
@@ -44,14 +48,16 @@ const FeaturedProducts = () => {
             </div>
           </div>
           <div className={styles.productContainer}>
-            {product.length > 0 ? (
-              product.map((data, index) => {
-                return (
-                  <div key={index}>
-                    <ProductsCard product={data} />
-                  </div>
-                );
-              })
+            {loading ? (
+              <div className={styles.loaderContainer}>
+                <div className={styles.loader} />
+              </div>
+            ) : product.length > 0 ? (
+              product.map((data: any) => (
+                <div key={data._id}>
+                  <ProductsCard product={data} />
+                </div>
+              ))
             ) : (
               <div
                 style={{
