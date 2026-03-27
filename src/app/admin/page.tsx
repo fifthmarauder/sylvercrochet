@@ -19,7 +19,9 @@ import { toast } from "react-toastify";
 import { api } from "../api";
 import { Categories } from "@/components/common/categories";
 import { useRouter } from "next/navigation";
-
+import { usePagination } from "../../../store/usePagination";
+import Pagination from "@/components/common/Pagination/Pagination";
+const PAGE_SIZE = 8;
 const Admin = () => {
   const EditProductRef = useRef<HTMLDivElement | null>(null);
   const router = useRouter();
@@ -45,7 +47,10 @@ const Admin = () => {
   const [imagePreview, setImagePreview] = useState<string[]>([]);
   const [existingImages, setExistingImages] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
-
+  const { page, totalPages, paginated, goTo } = usePagination(
+    products,
+    PAGE_SIZE,
+  );
   useEffect(() => {
     if (openDrawer && EditProductRef.current) {
       setTimeout(() => {
@@ -679,8 +684,8 @@ const Admin = () => {
               <div className={styles.loaderContainer}>
                 <div className={styles.loader} />
               </div>
-            ) : products.length > 0 ? (
-              products.map((data: any, index) => {
+            ) : paginated.length > 0 ? (
+              paginated.map((data: any, index) => {
                 return (
                   <div key={index} style={{ width: "100%" }}>
                     <div className={styles.tableContent}>
@@ -749,6 +754,11 @@ const Admin = () => {
                 No products found
               </div>
             )}
+            <Pagination
+              page={page}
+              totalPages={totalPages}
+              onPageChange={goTo}
+            />
           </div>
         </div>
       </div>
