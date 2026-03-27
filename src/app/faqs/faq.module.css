@@ -1,0 +1,28 @@
+.main {
+  background-color: var(--color-lightPink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 64px 24px;
+  min-height: calc(100vh - 500px);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  gap: 24px;
+}
+
+.para {
+  text-align: center;
+  font-size: 18px;
+  color: #566563;
+}
+
+@media only screen and (max-width: 1280px) {
+  .main {
+    min-height: calc(100vh - 500px);
+  }
+}

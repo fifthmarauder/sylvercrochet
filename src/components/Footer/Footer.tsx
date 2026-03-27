@@ -67,7 +67,14 @@ const Footer = () => {
             >
               About Us
             </div>
-            <div className={styles.contact}>FAQ</div>
+            <div
+              className={styles.contact}
+              onClick={() => {
+                router.push("/faqs");
+              }}
+            >
+              FAQs
+            </div>
           </div>
           <div className={styles.contactContainer}>
             <div
@@ -87,7 +94,14 @@ const Footer = () => {
             >
               Custom Order
             </div>
-            <div className={styles.contact}>Delivery & Returns</div>
+            <div
+              className={styles.contact}
+              onClick={() => {
+                router.push("/deliveryandreturns");
+              }}
+            >
+              Delivery & Returns
+            </div>
           </div>
         </div>
       </div>
