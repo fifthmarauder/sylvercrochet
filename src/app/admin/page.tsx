@@ -44,6 +44,7 @@ const Admin = () => {
   const [imageFile, setImageFile] = useState<File[]>([]);
   const [imagePreview, setImagePreview] = useState<string[]>([]);
   const [existingImages, setExistingImages] = useState<string[]>([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (openDrawer && EditProductRef.current) {
@@ -153,10 +154,13 @@ const Admin = () => {
 
   const fetchProducts = async () => {
     try {
+      setLoading(true);
       const response = await api.get("/api/users/adminProducts");
       setProducts(response.data);
     } catch (error: any) {
       toast.error("Failed to fetch products");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -671,7 +675,11 @@ const Admin = () => {
                 padding: "0 10px",
               }}
             ></div>
-            {products.length > 0 ? (
+            {loading ? (
+              <div className={styles.loaderContainer}>
+                <div className={styles.loader} />
+              </div>
+            ) : products.length > 0 ? (
               products.map((data: any, index) => {
                 return (
                   <div key={index} style={{ width: "100%" }}>
@@ -683,7 +691,6 @@ const Admin = () => {
                               ? data.images[0]
                               : data.images
                           }
-                          // {product.images || "/Images/placeholder.jpg"}
                           alt="Product"
                           className={styles.productImage}
                         />
