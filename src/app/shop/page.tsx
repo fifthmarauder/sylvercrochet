@@ -7,8 +7,11 @@ import Wave from "@/components/common/Wave";
 import { Categories } from "@/components/common/categories";
 import { api } from "../api";
 import { toast } from "react-toastify";
+import { usePagination } from "../../../store/usePagination";
+import Pagination from "@/components/common/Pagination/Pagination";
 
 const pills = ["All", ...Categories];
+const PAGE_SIZE = 9;
 
 const Shop = () => {
   const [selectedTab, setSelectedTab] = useState(pills[0]);
@@ -16,7 +19,14 @@ const Shop = () => {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [loading, setLoading] = useState(false);
+  const { page, totalPages, paginated, goTo, reset } = usePagination(
+    filteredProducts,
+    PAGE_SIZE,
+  );
 
+  useEffect(() => {
+    reset();
+  }, [selectedTab, searchQuery]);
   useEffect(() => {
     fetchProducts();
   }, []);
@@ -116,8 +126,8 @@ const Shop = () => {
               <div className={styles.loaderContainer}>
                 <div className={styles.loader} />
               </div>
-            ) : filteredProducts.length > 0 ? (
-              filteredProducts.map((data: any) => (
+            ) : paginated.length > 0 ? (
+              paginated.map((data: any) => (
                 <div key={data._id}>
                   <ProductsCard product={data} />
                 </div>
@@ -135,11 +145,16 @@ const Shop = () => {
               </div>
             )}
           </div>
+          <Pagination page={page} totalPages={totalPages} onPageChange={goTo} />
+
           <div
             className={styles.para}
-            style={{ fontSize: "16px", marginTop: "32px" }}
+            style={{ fontSize: "16px", marginTop: "16px" }}
           >
-            Showing {filteredProducts.length} of {products.length} products
+            Showing{" "}
+            {Math.min((page - 1) * PAGE_SIZE + 1, filteredProducts.length)}–
+            {Math.min(page * PAGE_SIZE, filteredProducts.length)} of{" "}
+            {filteredProducts.length} products
           </div>
         </div>
       </div>

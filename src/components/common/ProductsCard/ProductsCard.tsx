@@ -24,7 +24,6 @@ const ProductsCard = ({ product }: ProductCardProps) => {
 
   if (!product) return null;
 
-  // Normalise to array
   const imageList: string[] = Array.isArray(product.images)
     ? product.images
     : product.images
