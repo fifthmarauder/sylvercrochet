@@ -21,8 +21,24 @@ import { Categories } from "@/components/common/categories";
 import { useRouter } from "next/navigation";
 import { usePagination } from "../../../store/usePagination";
 import Pagination from "@/components/common/Pagination/Pagination";
+
+import {
+  closestCenter,
+  DndContext,
+  DragEndEvent,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from "@dnd-kit/core";
+import {
+  arrayMove,
+  SortableContext,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
+import { SortableRow } from "./SortableRow";
 const PAGE_SIZE = 8;
 const Admin = () => {
+  const sensors = useSensors(useSensor(PointerSensor));
   const EditProductRef = useRef<HTMLDivElement | null>(null);
   const router = useRouter();
   const [openDrawer, setOpenDrawer] = useState(false);
@@ -42,7 +58,7 @@ const Admin = () => {
   });
   const [products, setProducts] = useState([]);
   const [isUploading, setIsUploading] = useState(false);
-
+  const [isSaving, setIsSaving] = useState(false);
   const [imageFile, setImageFile] = useState<File[]>([]);
   const [imagePreview, setImagePreview] = useState<string[]>([]);
   const [existingImages, setExistingImages] = useState<string[]>([]);
@@ -80,6 +96,33 @@ const Admin = () => {
       setStats(response.data);
     } catch (error: any) {
       toast.error("Failed to fetch statistics");
+    }
+  };
+
+  const handleDragEnd = async (event: DragEndEvent) => {
+    const { active, over } = event;
+    if (!over || active.id === over.id) return;
+
+    const oldIndex = products.findIndex((p: any) => p._id === active.id);
+    const newIndex = products.findIndex((p: any) => p._id === over.id);
+    const reordered = arrayMove(products, oldIndex, newIndex);
+
+    setProducts(reordered); // optimistic update
+
+    const updates = reordered.map((p: any, i: number) => ({
+      id: p._id,
+      sortOrder: i,
+    }));
+
+    try {
+      setIsSaving(true);
+      await api.put("/api/users/updateSortOrder", updates);
+      toast.success("Order saved");
+    } catch {
+      toast.error("Failed to save order");
+      fetchProducts(); // revert on failure
+    } finally {
+      setIsSaving(false);
     }
   };
 
@@ -685,67 +728,25 @@ const Admin = () => {
                 <div className={styles.loader} />
               </div>
             ) : paginated.length > 0 ? (
-              paginated.map((data: any, index) => {
-                return (
-                  <div key={index} style={{ width: "100%" }}>
-                    <div className={styles.tableContent}>
-                      <div>
-                        <img
-                          src={
-                            Array.isArray(data.images)
-                              ? data.images[0]
-                              : data.images
-                          }
-                          alt="Product"
-                          className={styles.productImage}
-                        />
-                      </div>
-                      <div className={styles.productName}>{data.name}</div>
-                      <div>
-                        <div
-                          className={styles.productType}
-                          style={{ minWidth: "80px", textAlign: "center" }}
-                        >
-                          {data.category}
-                        </div>
-                      </div>
-                      <div className={styles.productPrice}>
-                        Rs. {data.price}
-                      </div>
-                      <div
-                        style={{
-                          display: "flex",
-                          gap: "12px",
-                        }}
-                      >
-                        <div
-                          className={styles.action}
-                          onClick={() => {
-                            handleEdit(data);
-                            console.log(data.stock, data.description);
-                          }}
-                        >
-                          <Pen size={20} color="var(--color-blue)" />
-                        </div>
-                        <div
-                          className={styles.action}
-                          style={{ backgroundColor: "#f3bedaff" }}
-                          onClick={() => handleDelete(data._id)}
-                        >
-                          <Trash2 size={20} color="red" />
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      className={styles.table}
-                      style={{
-                        borderBottom: "1px solid rgba(240, 240, 240, 1)",
-                        padding: "0 10px",
-                      }}
-                    ></div>
-                  </div>
-                );
-              })
+              <DndContext
+                sensors={sensors}
+                collisionDetection={closestCenter}
+                onDragEnd={handleDragEnd}
+              >
+                <SortableContext
+                  items={paginated.map((p: any) => p._id)}
+                  strategy={verticalListSortingStrategy}
+                >
+                  {paginated.map((data: any) => (
+                    <SortableRow
+                      key={data._id}
+                      data={data}
+                      onEdit={handleEdit}
+                      onDelete={handleDelete}
+                    />
+                  ))}
+                </SortableContext>
+              </DndContext>
             ) : (
               <div
                 style={{ padding: "20px", textAlign: "center" }}
@@ -754,6 +755,20 @@ const Admin = () => {
                 No products found
               </div>
             )}
+
+            {isSaving && (
+              <div
+                style={{
+                  textAlign: "center",
+                  padding: "8px",
+                  color: "var(--color-darkPink)",
+                  fontSize: "14px",
+                }}
+              >
+                Saving order...
+              </div>
+            )}
+
             <Pagination
               page={page}
               totalPages={totalPages}
