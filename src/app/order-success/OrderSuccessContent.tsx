@@ -5,7 +5,7 @@ import TaskAltIcon from "@mui/icons-material/TaskAlt";
 import dynamic from "next/dynamic";
 import { useRouter, useSearchParams } from "next/navigation";
 import Button from "@/components/common/Button/Button";
-import { Suspense } from "react";
+import { Suspense, useEffect } from "react";
 
 const Ballpit = dynamic(() => import("@/components/Ballpit"), { ssr: false });
 
@@ -13,6 +13,14 @@ const OrderSuccess = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const orderNumber = searchParams.get("orderNumber");
+
+  useEffect(() => {
+    if (!orderNumber) {
+      router.replace("/");
+    }
+  }, [orderNumber, router]);
+
+  if (!orderNumber) return null;
   const rules = [
     {
       number: "1",
