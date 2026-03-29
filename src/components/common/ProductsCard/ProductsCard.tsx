@@ -106,7 +106,10 @@ const ProductsCard = ({ product }: ProductCardProps) => {
         <div className={styles.productType}>{product.category}</div>
       </div>
       <div className={styles.productName}>{product.name}</div>
-      <div className={styles.productDescription}>{product.description}</div>
+      <div className={styles.productDescription}>
+        <span className={styles.descriptionText}>{product.description}</span>
+        <span className={styles.tooltip}>{product.description}</span>
+      </div>
       <div className={styles.priceContainer}>
         <div className={styles.productPrice}>Rs. {product.price}</div>
         <Button
