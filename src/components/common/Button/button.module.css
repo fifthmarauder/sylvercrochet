@@ -9,7 +9,9 @@
   border-radius: 20px;
   box-shadow: 0px 6px 10px -6px rgba(0, 0, 0, 0.7);
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .buttonContainer:hover {
@@ -18,4 +20,10 @@
 
 .buttonContainer:active {
   transform: scale(0.98);
+}
+
+@media only screen and (max-width: 400px) {
+  .buttonContainer {
+    font-size: 14px;
+  }
 }
