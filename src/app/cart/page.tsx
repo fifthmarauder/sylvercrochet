@@ -91,6 +91,7 @@ const Cart = () => {
                               backgroundColor: "var(--color-lightPink)",
                               borderRadius: "999px",
                               padding: "6px",
+                              cursor: "pointer",
                             }}
                             onClick={() => {
                               dispatch(incrementQuantity(item._id));
@@ -103,6 +104,7 @@ const Cart = () => {
                               backgroundColor: "var(--color-lightPink)",
                               borderRadius: "999px",
                               padding: "6px",
+                              cursor: "pointer",
                             }}
                             onClick={() => {
                               dispatch(decrementQuantity(item._id));

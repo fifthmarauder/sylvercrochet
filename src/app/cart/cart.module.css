@@ -150,6 +150,7 @@
 .trashIcon {
   display: flex;
   align-self: end;
+  cursor: pointer;
 }
 
 @media only screen and (max-width: 1280px) {
