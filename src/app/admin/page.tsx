@@ -38,7 +38,14 @@ import {
 import { SortableRow } from "./SortableRow";
 const PAGE_SIZE = 8;
 const Admin = () => {
-  const sensors = useSensors(useSensor(PointerSensor));
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        distance: 8,
+      },
+    }),
+  );
+
   const EditProductRef = useRef<HTMLDivElement | null>(null);
   const router = useRouter();
   const [openDrawer, setOpenDrawer] = useState(false);
