@@ -29,6 +29,10 @@
   padding: 10px 16px;
 }
 
+.navbarButtons:hover {
+  color: var(--color-lightPink);
+}
+
 .Logo {
   object-fit: cover;
   object-position: center;
