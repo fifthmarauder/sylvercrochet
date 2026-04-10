@@ -15,12 +15,6 @@ import {
   removeFromCart,
 } from "../../../store/slices/cartSlice";
 
-export const metadata = {
-  title: "Sylver Crochet – Handmade Anime Plushies & Keychains",
-  description:
-    "Shop handmade crochet anime and game character plushies, amigurumi and keychains. Custom orders available.",
-};
-
 const Cart = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();

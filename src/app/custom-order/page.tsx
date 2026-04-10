@@ -9,12 +9,6 @@ import { api } from "../api";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 
-export const metadata = {
-  title: "Sylver Crochet – Handmade Anime Plushies & Keychains",
-  description:
-    "Shop handmade crochet anime and game character plushies, amigurumi and keychains. Custom orders available.",
-};
-
 const CustomOrder = () => {
   const router = useRouter();
   const [fullName, setFullName] = useState("");

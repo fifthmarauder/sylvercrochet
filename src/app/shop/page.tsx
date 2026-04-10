@@ -10,12 +10,6 @@ import { toast } from "react-toastify";
 import { usePagination } from "../../../store/usePagination";
 import Pagination from "@/components/common/Pagination/Pagination";
 
-export const metadata = {
-  title: "Sylver Crochet – Handmade Anime Plushies & Keychains",
-  description:
-    "Shop handmade crochet anime and game character plushies, amigurumi and keychains. Custom orders available.",
-};
-
 const pills = ["All", ...Categories];
 const PAGE_SIZE = 9;
 

@@ -5,12 +5,6 @@ import BusinessCenterIcon from "@mui/icons-material/BusinessCenter";
 import { House } from "lucide-react";
 import { useRouter } from "next/navigation";
 
-export const metadata = {
-  title: "Sylver Crochet – Handmade Anime Plushies & Keychains",
-  description:
-    "Shop handmade crochet anime and game character plushies, amigurumi and keychains. Custom orders available.",
-};
-
 const NotFound = () => {
   const router = useRouter();
   return (

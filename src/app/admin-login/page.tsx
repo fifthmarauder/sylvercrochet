@@ -7,12 +7,6 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import { api } from "../api";
 
-export const metadata = {
-  title: "Sylver Crochet – Handmade Anime Plushies & Keychains",
-  description:
-    "Shop handmade crochet anime and game character plushies, amigurumi and keychains. Custom orders available.",
-};
-
 const page = () => {
   const router = useRouter();
   const [email, setEmail] = useState("");
