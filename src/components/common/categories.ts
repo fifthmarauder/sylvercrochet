@@ -1,10 +1,10 @@
-export  const Categories = [
-    "Dolls",
-    "KeyChains",
-    "Plushies",
-    "Hair Accessories",
-    "Flowers",
-    "Extra",
-  ] as const;
+export const Categories = [
+  "Dolls",
+  "Keychains",
+  "Plushies",
+  "Accessories",
+  "Flowers",
+  "Bundles",
+] as const;
 
-  export type ProductCategory = typeof Categories[number];
+export type ProductCategory = (typeof Categories)[number];
