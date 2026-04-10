@@ -10,6 +10,12 @@ import { clearCart } from "../../../store/slices/cartSlice";
 import Button from "@/components/common/Button/Button";
 import { Box } from "lucide-react";
 
+export const metadata = {
+  title: "Sylver Crochet – Handmade Anime Plushies & Keychains",
+  description:
+    "Shop handmade crochet anime and game character plushies, amigurumi and keychains. Custom orders available.",
+};
+
 const Checkout = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();

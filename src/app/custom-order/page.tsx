@@ -9,6 +9,12 @@ import { api } from "../api";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 
+export const metadata = {
+  title: "Sylver Crochet – Handmade Anime Plushies & Keychains",
+  description:
+    "Shop handmade crochet anime and game character plushies, amigurumi and keychains. Custom orders available.",
+};
+
 const CustomOrder = () => {
   const router = useRouter();
   const [fullName, setFullName] = useState("");
@@ -32,34 +38,6 @@ const CustomOrder = () => {
 
     const validFiles: File[] = [];
     const newPreviews: string[] = [];
-
-    // files.forEach((file) => {
-    //   const allowedTypes = [
-    //     "image/jpeg",
-    //     "image/jpg",
-    //     "image/png",
-    //     "image/webp",
-    //   ];
-    //   if (!allowedTypes.includes(file.type)) {
-    //     toast.error(`${file.name} is not a valid image format`);
-    //     return;
-    //   }
-    //   if (file.size > 5 * 1024 * 1024) {
-    //     toast.error(`${file.name} is too large. Max 5MB per image.`);
-    //     return;
-    //   }
-
-    //   validFiles.push(file);
-
-    //   const reader = new FileReader();
-    //   reader.onloadend = () => {
-    //     newPreviews.push(reader.result as string);
-    //     if (newPreviews.length === validFiles.length) {
-    //       setImagePreviews((prev) => [...prev, ...newPreviews]);
-    //     }
-    //   };
-    //   reader.readAsDataURL(file);
-    // });
 
     for (const file of files) {
       // ✅ return works properly here
@@ -96,29 +74,6 @@ const CustomOrder = () => {
     setImageFiles((prev) => prev.filter((_, i) => i !== index));
     setImagePreviews((prev) => prev.filter((_, i) => i !== index));
   };
-
-  // const uploadImages = async (): Promise<string[]> => {
-  //   const uploadedUrls: string[] = [];
-
-  //   for (const file of imageFiles) {
-  //     const formData = new FormData();
-  //     formData.append("image", file);
-
-  //     try {
-  //       const response = await api.post("/api/users/image", formData, {
-  //         headers: { "Content-Type": "multipart/form-data" },
-  //       });
-
-  //       if (response.data.success) {
-  //         uploadedUrls.push(response.data.url);
-  //       }
-  //     } catch (error) {
-  //       throw new Error(`Failed to upload ${file.name}`);
-  //     }
-  //   }
-
-  //   return uploadedUrls;
-  // };
 
   const uploadImages = async (): Promise<string[]> => {
     const uploadPromises = imageFiles.map(async (file) => {
