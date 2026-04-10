@@ -1,20 +1,15 @@
 "use client";
 
 import {
-  ArrowDown,
-  ArrowUp,
   ChevronDown,
   ChevronUpIcon,
   Search,
   ShieldQuestionMark,
 } from "lucide-react";
 import styles from "./faq.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const FAQs = () => {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [open, setOpen] = useState(false);
-  const [active, setActive] = useState<string | null>(null);
   const faqs = [
     {
       heading: "ORDERS & SHIPPING",
@@ -37,7 +32,7 @@ const FAQs = () => {
         {
           question: "What if my order arrives damaged?",
           answer:
-            "We package everything carefully, but accidents happen! If your item arrives damaged, contact us within 48 hours with photos and we'll send you a replacement at no cost.",
+            "If it's reported within 24 hours of delivery, we will return the product amount (minus the delivery fees) and cry ourselves to sleep.",
         },
       ],
     },
@@ -62,7 +57,7 @@ const FAQs = () => {
         {
           question: "Can I wash my crochet items?",
           answer:
-            "Yes! Most items can be hand-washed in cold water with mild detergent and laid flat to dry. Avoid machine washing to maintain the shape and quality.",
+            "Probably. We dont know but let us know if it works out for you! (JK we don't recommend)",
         },
       ],
     },
@@ -70,19 +65,9 @@ const FAQs = () => {
       heading: "RETURNS & EXCHANGES",
       QA: [
         {
-          question: "What is your return policy?",
+          question: "What is your return and exchange policy?",
           answer:
-            "We accept returns within 2 days of delivery for defective items.",
-        },
-        {
-          question: "How do I exchange an item?",
-          answer:
-            "Email us at sylvercrochet@gmail.com with your order number and what you'd like to exchange. We'll arrange the exchange and cover return shipping if it's our error.",
-        },
-        {
-          question: "Who pays for return shipping?",
-          answer:
-            "If you're returning due to our error (wrong item, defect, etc.), we cover return shipping.",
+            "None. Once we have dispatched your order it cannot be returned. Incase of damaged product we will return your money (minus the delivery fee) if notified within 24 hours.",
         },
       ],
     },
@@ -126,10 +111,38 @@ const FAQs = () => {
     },
   ];
 
+  const [searchQuery, setSearchQuery] = useState("");
+  const [active, setActive] = useState<string | null>(null);
+  const [filteredFaqs, setFilteredFaqs] = useState(faqs);
+
+  useEffect(() => {
+    const query = searchQuery.trim().toLowerCase();
+    if (!query) {
+      setFilteredFaqs(faqs);
+      return;
+    }
+
+    const results = faqs
+      .map((section) => ({
+        ...section,
+        QA: section.QA.filter(
+          (qa) =>
+            qa.question.toLowerCase().includes(query) ||
+            qa.answer.toLowerCase().includes(query),
+        ),
+      }))
+      .filter((section) => section.QA.length > 0);
+
+    setTimeout(() => {
+      setFilteredFaqs(results);
+    }, 300);
+  }, [searchQuery]);
+
   const handleClick = (sectionIdx: any, qaIdx: any) => {
     const key = `${sectionIdx}-${qaIdx}`;
     setActive((prev) => (prev === key ? null : key));
   };
+
   return (
     <div className={styles.main}>
       <div className={styles.container}>
@@ -145,12 +158,20 @@ const FAQs = () => {
             type="text"
             className={styles.input}
             value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
+            onChange={(e) => {
+              setSearchQuery(e.target.value);
+            }}
           />
         </div>
         <div className={styles.wrapper}>
-          {faqs.map((faq, sectionIdx) => {
-            return (
+          {filteredFaqs.length === 0 ? (
+            <div
+              style={{ color: "var(--color-darkPink)", textAlign: "center" }}
+            >
+              No results found for "{searchQuery}"
+            </div>
+          ) : (
+            filteredFaqs.map((faq, sectionIdx) => (
               <div key={faq.heading}>
                 <div
                   className={`heading ${styles.heading}`}
@@ -199,8 +220,8 @@ const FAQs = () => {
                   </div>
                 </div>
               </div>
-            );
-          })}
+            ))
+          )}
         </div>
       </div>
     </div>
