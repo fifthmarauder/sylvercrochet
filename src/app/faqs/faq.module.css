@@ -119,6 +119,10 @@
   .main {
     padding: 64px 12px;
   }
+  .bigHeading {
+    font-size: 36px;
+    line-height: 48px;
+  }
   .heading {
     text-align: center;
   }

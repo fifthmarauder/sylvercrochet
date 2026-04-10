@@ -147,7 +147,10 @@ const FAQs = () => {
     <div className={styles.main}>
       <div className={styles.container}>
         <ShieldQuestionMark className={styles.icon} size={64} />
-        <div className="heading" style={{ color: "var(--color-darkPink)" }}>
+        <div
+          className={`heading ${styles.bigHeading}`}
+          style={{ color: "var(--color-darkPink)" }}
+        >
           FREQUENTLY ASKED QUESTIONS
         </div>
         <div className={styles.para}>Got questions? We got answers!</div>
