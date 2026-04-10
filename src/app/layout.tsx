@@ -1,25 +1,16 @@
 import Header from "@/components/Header/Header";
 import "./globals.css";
-
 import localFont from "next/font/local";
 import Footer from "@/components/Footer/Footer";
 import { ToastContainer } from "react-toastify";
 import { Providers } from "./provider";
 import { Metadata } from "next";
+import { Nunito } from "next/font/google";
 
-const sofia = localFont({
-  src: [
-    {
-      weight: "700",
-      style: "normal",
-      path: "../../public/Fonts/Sofia Pro Bold Az.woff",
-    },
-    {
-      weight: "400",
-      style: "normal",
-      path: "../../public/Fonts/Sofia Pro Regular Az.woff",
-    },
-  ],
+const sofia = Nunito({
+  subsets: ["latin"],
+  weight: ["700"],
+
   variable: "--font-sofia",
   display: "swap",
 });
