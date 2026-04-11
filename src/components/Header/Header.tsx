@@ -52,13 +52,13 @@ const Header = () => {
   const header = [
     { name: "Home", icon: House, path: "/" },
     { name: "Shop", icon: Store, path: "/shop" },
-    { name: "About Us", icon: LineSquiggle, path: "/about-us" },
+    { name: "About Me", icon: LineSquiggle, path: "/about-me" },
   ];
 
   const getActiveName = () => {
     if (pathName == "/") return "Home";
     if (pathName == "/shop") return "Shop";
-    if (pathName == "/about-us") return "About Us";
+    if (pathName == "/about-me") return "About Me";
     if (pathName == "/admin") return "Admin";
     return "";
   };
