@@ -62,10 +62,10 @@ const Footer = () => {
             <div
               className={styles.contact}
               onClick={() => {
-                router.push("/about-us");
+                router.push("/about-me");
               }}
             >
-              About Us
+              About Me
             </div>
             <div
               className={styles.contact}
