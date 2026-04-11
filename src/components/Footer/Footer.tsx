@@ -97,7 +97,7 @@ const Footer = () => {
             <div
               className={styles.contact}
               onClick={() => {
-                router.push("/deliveryandreturns");
+                router.push("/faqs");
               }}
             >
               Delivery & Returns

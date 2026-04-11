@@ -52,6 +52,7 @@
   display: flex;
   flex-direction: column;
   align-items: start;
+  gap: 36px;
 }
 
 .heading {
@@ -93,6 +94,29 @@
   border-bottom-right-radius: 18px;
   line-height: 20px;
   word-spacing: 0.5px;
+}
+
+.answerWrapper {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s ease;
+}
+
+.answerWrapper.open {
+  grid-template-rows: 1fr;
+}
+
+.answerInner {
+  overflow: hidden;
+}
+
+.chevron {
+  transition: transform 0.3s ease;
+  color: var(--color-darkPink);
+}
+
+.chevron.rotated {
+  transform: rotate(180deg);
 }
 
 @keyframes bounce {

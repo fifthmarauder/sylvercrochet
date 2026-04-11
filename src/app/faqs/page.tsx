@@ -197,26 +197,18 @@ const FAQs = () => {
                           >
                             <div className={styles.questionContainer}>
                               <div>{qa.question}</div>
-                              {active === key ? (
-                                <ChevronUpIcon
-                                  style={{
-                                    fontSize: "12px",
-                                    color: "var(--color-darkPink)",
-                                  }}
-                                />
-                              ) : (
-                                <ChevronDown
-                                  style={{
-                                    fontSize: "12px",
-                                    color: "var(--color-darkPink)",
-                                  }}
-                                />
-                              )}
+                              <ChevronDown
+                                className={`${styles.chevron} ${active === key ? styles.rotated : ""}`}
+                              />
                             </div>
                           </div>
-                          {active === key && (
-                            <div className={styles.answers}>{qa.answer}</div>
-                          )}
+                          <div
+                            className={`${styles.answerWrapper} ${active === key ? styles.open : ""}`}
+                          >
+                            <div className={styles.answerInner}>
+                              <div className={styles.answers}>{qa.answer}</div>
+                            </div>
+                          </div>
                         </div>
                       );
                     })}
