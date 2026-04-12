@@ -40,6 +40,16 @@ const knotNoodle = localFont({
 export const metadata: Metadata = {
   title: "Sylver Crochet",
   description: "Handmade Crochet Products",
+  openGraph: {
+    title: "Sylver Crochet",
+    description: "Handmade Crochet Products",
+    url: "https://eeshashahbaz.vercel.app",
+    images: [
+      {
+        url: "og-preview.png",
+      },
+    ],
+  },
   icons: {
     icon: [
       { url: "/Images/favicon.ico" },
