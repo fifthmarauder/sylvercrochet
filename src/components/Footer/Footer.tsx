@@ -53,8 +53,7 @@ const Footer = () => {
             <div
               className={styles.contact}
               onClick={() => {
-                window.location.href =
-                  "mailto:sylvercrochet@gmail.com?subject=Hello&body=Hi there";
+                router.push("/contact-us");
               }}
             >
               Contact Us

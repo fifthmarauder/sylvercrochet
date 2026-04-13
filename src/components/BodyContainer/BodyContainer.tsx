@@ -53,10 +53,10 @@ const BodyContainer = () => {
             />
             <Button
               Icon={Star}
-              text="Admin Panel"
+              text="FAQs"
               containerStyles={{ backgroundColor: "var(--color-blue)" }}
               onClick={() => {
-                router.push("/admin-login");
+                router.push("/faqs");
               }}
             />
           </div>
