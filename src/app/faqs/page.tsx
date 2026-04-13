@@ -3,13 +3,17 @@
 import {
   ChevronDown,
   ChevronUpIcon,
+  Heart,
   Search,
   ShieldQuestionMark,
 } from "lucide-react";
 import styles from "./faq.module.css";
 import { useEffect, useState } from "react";
+import Button from "@/components/common/Button/Button";
+import { useRouter } from "next/navigation";
 
 const FAQs = () => {
+  const router = useRouter();
   const faqs = [
     {
       heading: "ORDERS & SHIPPING",
@@ -217,6 +221,21 @@ const FAQs = () => {
               </div>
             ))
           )}
+        </div>
+        <div className={styles.redirectContainer}>
+          <div className={`heading ${styles.redirectHeading}`}>
+            Still have questions?{" "}
+          </div>
+          <div className={styles.para}>
+            We're here to help! Reach out here so we can assist you!
+          </div>
+          <Button
+            text="Contact US"
+            Icon={Heart}
+            onClick={() => {
+              router.push("/contact-us");
+            }}
+          />
         </div>
       </div>
     </div>

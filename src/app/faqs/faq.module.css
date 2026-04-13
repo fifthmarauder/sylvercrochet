@@ -119,6 +119,25 @@
   transform: rotate(180deg);
 }
 
+.redirectContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  border: 3px solid #e5aeda88;
+  border-radius: 32px;
+  background: linear-gradient(to right, #feebf6, #c9dff0);
+  box-shadow: 0px 6px 10px -6px rgba(0, 0, 0, 0.7);
+  padding: 24px 64px;
+  width: 60vw;
+  margin-top: 80px;
+}
+
+.redirectHeading {
+  font-size: 36px;
+  color: var(--color-darkPink);
+}
+
 @keyframes bounce {
   0% {
     transform: scale(0);
@@ -179,5 +198,9 @@
 
   .answers {
     font-size: 16px;
+  }
+
+  .redirectContainer {
+    padding: 24px;
   }
 }
