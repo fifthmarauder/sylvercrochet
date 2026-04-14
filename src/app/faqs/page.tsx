@@ -230,7 +230,7 @@ const FAQs = () => {
             We're here to help! Reach out here so we can assist you!
           </div>
           <Button
-            text="Contact US"
+            text="Contact Us"
             Icon={Heart}
             onClick={() => {
               router.push("/contact-us");
