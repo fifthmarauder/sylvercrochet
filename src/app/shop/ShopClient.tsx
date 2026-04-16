@@ -18,7 +18,7 @@ const Shop = ({ initialProducts = [] }: { initialProducts: any[] }) => {
   const [products, setProducts] = useState<any[]>(initialProducts);
   const [filteredProducts, setFilteredProducts] = useState<any[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const { page, totalPages, paginated, goTo, reset } = usePagination(
     filteredProducts,
     PAGE_SIZE,
