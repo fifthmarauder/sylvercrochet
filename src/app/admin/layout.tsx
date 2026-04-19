@@ -5,6 +5,6 @@ export const metadata = {
   description: "Manage your crochet products",
 };
 
-export default function ShopLayout({ children }: { children: ReactNode }) {
+export default function AdminLayout({ children }: { children: ReactNode }) {
   return <>{children}</>;
 }

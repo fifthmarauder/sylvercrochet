@@ -5,6 +5,6 @@ export const metadata = {
   description: "Learn more about our journey of crocheting!",
 };
 
-export default function ShopLayout({ children }: { children: ReactNode }) {
+export default function AboutLayout({ children }: { children: ReactNode }) {
   return <>{children}</>;
 }

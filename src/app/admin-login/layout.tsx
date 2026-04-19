@@ -5,6 +5,10 @@ export const metadata = {
   description: "Login to view your crocheted products!",
 };
 
-export default function ShopLayout({ children }: { children: ReactNode }) {
+export default function AdminLoginLayout({
+  children,
+}: {
+  children: ReactNode;
+}) {
   return <>{children}</>;
 }
