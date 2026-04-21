@@ -10,7 +10,7 @@ export const PAKISTAN_CITIES = [
   "Shikarpur",
   "Khairpur",
   "Dadu",
-  
+
   // Punjab
   "Lahore",
   "Faisalabad",
@@ -32,7 +32,7 @@ export const PAKISTAN_CITIES = [
   "Chiniot",
   "Kamoke",
   "Mandi Burewala",
-  
+
   // Khyber Pakhtunkhwa
   "Peshawar",
   "Mardan",
@@ -44,7 +44,7 @@ export const PAKISTAN_CITIES = [
   "Charsadda",
   "Nowshera",
   "Mansehra",
-  
+
   // Balochistan
   "Quetta",
   "Turbat",
@@ -53,27 +53,27 @@ export const PAKISTAN_CITIES = [
   "Chaman",
   "Gwadar",
   "Sibi",
-  
+
   // Islamabad Capital Territory
   "Islamabad",
-  
+
   // Azad Kashmir
   "Muzaffarabad",
   "Mirpur",
   "Kotli",
   "Rawalakot",
-  
+
   // Gilgit-Baltistan
   "Gilgit",
   "Skardu",
 ] as const;
 
-export type City = typeof PAKISTAN_CITIES[number];
+export type City = (typeof PAKISTAN_CITIES)[number];
 
 // Shipping costs
 export const SHIPPING_COSTS = {
-  Karachi: 400,
-  default: 600, 
+  Karachi: 300,
+  default: 450,
 };
 
 export const getShippingCost = (city: string): number => {
